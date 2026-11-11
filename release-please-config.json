@@ -4,6 +4,7 @@
 		".": {
 			"release-type": "node",
 			"package-name": "@moulibheemaneti/docfold",
+			"initial-version": "0.1.0",
 			"include-component-in-tag": true,
 			"changelog-path": "CHANGELOG.md",
 			"changelog-sections": [
