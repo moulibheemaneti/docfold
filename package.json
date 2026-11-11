@@ -1,0 +1,31 @@
+{
+  "name": "docfold",
+  "version": "0.1.0",
+  "description": "Turn a folder of markdown into a searchable docs site: folders become the sidebar, front matter becomes filters. Static build, no framework, runs on Bun.",
+  "keywords": ["docs", "documentation", "markdown", "static-site-generator", "front-matter", "adr", "knowledge-base", "bun"],
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "docfold": "./src/cli.ts"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "bun": ">=1.4.0"
+  },
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "bun check"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.4",
+    "typescript": "^7"
+  }
+}

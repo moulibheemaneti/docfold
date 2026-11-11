@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="4 3 120 122" role="img" aria-label="docfold">
+  <path fill="#4355e0" d="M12 25A6 6 0 0 1 18 19L44 19Q47 19 49 22L53 28Q55 31 58 31L90 31L116 57L116 99A10 10 0 0 1 106 109L22 109A10 10 0 0 1 12 99Z"/>
+    <path fill="#ff7a59" d="M90 31L116 57L93 57Q90 57 90 54Z"/>
+    <g fill="#ffffff"><rect x="28" y="51" width="52" height="8" rx="4"/><rect x="28" y="67" width="40" height="8" rx="4"/><rect x="28" y="83" width="26" height="8" rx="4"/></g>
+</svg>
