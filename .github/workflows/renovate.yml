@@ -1,0 +1,18 @@
+name: Renovate
+
+on:
+  schedule:
+    - cron: "30 3 * * 6" # Every Saturday at 09:00 IST (03:30 UTC)
+  workflow_dispatch:
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: renovatebot/github-action@v41
+        with:
+          token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          # Self-hosted Renovate only processes the repositories it is told about.
+          RENOVATE_REPOSITORIES: ${{ github.repository }}

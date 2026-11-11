@@ -1,7 +1,7 @@
 /**
  * Loads `docfold.config.ts` (or .js / .mjs) next to your docs:
  *
- *   import { defineConfig } from "docfold";
+ *   import { defineConfig } from "@moulibheemaneti/docfold";
  *   export default defineConfig({ title: "My project", srcDir: "content" });
  *
  * Every option is optional; with no config file docfold serves the current folder.

@@ -10,7 +10,7 @@ import type { DevServer, UserConfig } from "../src/types";
 let root: string;
 let homeRoot: string;
 
-// Plain object exports: the temp folders can't resolve the "docfold" package for defineConfig.
+// Plain object exports: the temp folders can't resolve the "@moulibheemaneti/docfold" package for defineConfig.
 const writeConfig = (dir: string, config: UserConfig) =>
   Bun.write(join(dir, "docfold.config.ts"), `export default ${JSON.stringify(config)};`);
 
