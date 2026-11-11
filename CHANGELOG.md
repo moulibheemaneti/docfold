@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/moulibheemaneti/docfold/compare/docfold-v0.1.0...docfold-v0.1.1) (2026-11-11)
+
+
+### CI
+
+* publish to npm with trusted publishing instead of a token ([#4](https://github.com/moulibheemaneti/docfold/issues/4)) ([7812743](https://github.com/moulibheemaneti/docfold/commit/78127432b4a4bf30410bd90a12a5670ab257a1e9))
+
 ## 0.1.0 (2026-11-11)
 
 
