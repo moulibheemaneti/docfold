@@ -1,9 +1,17 @@
 {
-  "name": "docfold",
+  "name": "@moulibheemaneti/docfold",
   "version": "0.1.0",
-  "description": "Turn a folder of markdown into a searchable docs site: folders become the sidebar, front matter becomes filters. Static build, no framework, runs on Bun.",
+  "description": "Turn a folder of markdown into a searchable docs site. Folders become the sidebar, front matter becomes filters. Runs on Bun.",
   "keywords": ["docs", "documentation", "markdown", "static-site-generator", "front-matter", "adr", "knowledge-base", "bun"],
   "license": "MIT",
+  "homepage": "https://github.com/moulibheemaneti/docfold#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moulibheemaneti/docfold.git"
+  },
+  "bugs": {
+    "url": "https://github.com/moulibheemaneti/docfold/issues"
+  },
   "type": "module",
   "bin": {
     "docfold": "./src/cli.ts"
@@ -17,6 +25,9 @@
     "README.md",
     "LICENSE"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "bun": ">=1.4.0"
   },

@@ -5,7 +5,14 @@
   </picture>
 </h1>
 
-<p align="center">Turn a folder of markdown into a searchable docs site.</p>
+<p align="center">Turn a folder of markdown into a searchable docs site.<br>Folders become the sidebar, front matter becomes filters. Runs on Bun.</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@moulibheemaneti/docfold"><img src="https://img.shields.io/npm/v/@moulibheemaneti/docfold" alt="npm version"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license"></a>
+</p>
+
+<p align="center"><a href="https://www.npmjs.com/package/@moulibheemaneti/docfold">npm</a> · <a href="https://github.com/moulibheemaneti/docfold">GitHub</a></p>
 
 - **Your folders are the navigation.** Every folder, sub-folder and `.md` file shows up in the sidebar. No sidebar config.
 - **Your front matter is the filter.** `tags`, `status` and `date` become filter chips (with counts), status badges and sort orders. Combine them with full-text search.
@@ -18,7 +25,7 @@ It's built for **collections of records**: decision records (ADRs), RFCs, specs,
 ## Quick start
 
 ```sh
-bun add -d docfold
+bun add -d @moulibheemaneti/docfold
 ```
 
 Put markdown files in a folder:
@@ -94,7 +101,7 @@ The dev server also answers the same parameters as JSON at `/api/search`.
 Optional `docfold.config.ts` (or `.js` / `.mjs`) in the folder you run `docfold` from:
 
 ```ts
-import { defineConfig } from "docfold";
+import { defineConfig } from "@moulibheemaneti/docfold";
 
 export default defineConfig({
   title: "My Project",          // top bar and page titles (default "Docs")
@@ -234,7 +241,7 @@ jobs:
 ## Programmatic API
 
 ```ts
-import { loadConfig, loadLibrary, searchDocs, parseSearchParams, build, createDevServer } from "docfold";
+import { loadConfig, loadLibrary, searchDocs, parseSearchParams, build, createDevServer } from "@moulibheemaneti/docfold";
 
 const config = await loadConfig("./docs");
 const library = await loadLibrary(config.srcDir);
