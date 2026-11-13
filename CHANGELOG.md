@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/moulibheemaneti/docfold/compare/docfold-v0.1.1...docfold-v0.2.0) (2026-11-13)
+
+
+### Features
+
+* show an "On this page" outline of headings on document pages ([#6](https://github.com/moulibheemaneti/docfold/issues/6)) ([f7e4f91](https://github.com/moulibheemaneti/docfold/commit/f7e4f91241b93e3b589009f04e27ecd05164a016))
+
 ## [0.1.1](https://github.com/moulibheemaneti/docfold/compare/docfold-v0.1.0...docfold-v0.1.1) (2026-11-11)
 
 
