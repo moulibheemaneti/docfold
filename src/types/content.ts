@@ -23,7 +23,10 @@ export interface Doc {
   tags: string[];
   /** Plain text of the rendered body, for search and snippets. */
   text: string;
+  /** Plain text of every heading in the body, for search. */
   headings: string[];
+  /** The body's H2 and H3 headings that have an id, in order: the page's "On this page" outline. */
+  outline: Heading[];
   /** Front matter exactly as parsed. */
   meta: Record<string, unknown>;
   /** Markdown body (front matter removed). */
@@ -34,8 +37,18 @@ export interface Doc {
   assets: string[];
 }
 
+/** A heading inside a document's body. */
+export interface Heading {
+  /** 1–6, from <h1>–<h6>. */
+  level: number;
+  /** The heading's id attribute (the target of "#id" links). */
+  id: string;
+  /** Plain text, e.g. "The foo API" for "The `foo` **API**". */
+  text: string;
+}
+
 /** What the browser needs for search: everything except the heavy or server-only fields. */
-export type IndexedDoc = Omit<Doc, "meta" | "body" | "html" | "assets">;
+export type IndexedDoc = Omit<Doc, "meta" | "body" | "html" | "assets" | "outline">;
 
 export interface Facet {
   name: string;

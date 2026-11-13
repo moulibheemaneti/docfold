@@ -1,10 +1,11 @@
 /**
- * A document page: breadcrumbs, title, meta and the rendered markdown.
+ * A document page: breadcrumbs, title, meta, the "On this page" outline and the rendered markdown.
  */
 
 import { html, raw, type SafeHtml } from "../shared/html";
 import type { Doc, Library, Site, Urls } from "../types";
 import { layout } from "./layout";
+import { outline } from "./outline";
 import { dateLabel, searchUrl, statusBadge } from "./parts";
 
 const breadcrumbs = (doc: Doc, urls: Urls): SafeHtml => {
@@ -19,7 +20,8 @@ const breadcrumbs = (doc: Doc, urls: Urls): SafeHtml => {
 
 export const docPage = (site: Site, library: Library, doc: Doc): string => {
   const { urls } = site;
-  const content = html`<article class="doc">
+  const toc = outline(doc.outline);
+  const content = html`<article class="${toc ? "doc has-outline" : "doc"}">
     ${breadcrumbs(doc, urls)}
     <header class="doc-header">
       <h1>${doc.title}</h1>
@@ -30,6 +32,7 @@ export const docPage = (site: Site, library: Library, doc: Doc): string => {
         ${doc.tags.map((tag) => html`<a class="tag" href="${searchUrl(urls, { tags: [tag] })}">${tag}</a>`)}
       </div>
     </header>
+    ${toc}
     <div class="prose">${raw(doc.html)}</div>
     <footer class="doc-footer">Source: <code>${site.sourceLabel}${doc.relPath}</code></footer>
   </article>`;

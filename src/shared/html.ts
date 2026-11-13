@@ -46,16 +46,21 @@ const decodeNumericEntity = (code: string): string => {
   return n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : "�";
 };
 
+/** Decodes character references (`&amp;`, `&#39;`, `&#x27;`…) in text or an attribute value. */
+export const decodeEntities = (value: string): string =>
+  value.replace(/&(#x[\da-f]+|#\d+|[a-z]+);/gi, (entity, code: string) =>
+    code[0] === "#" ? decodeNumericEntity(code) : (ENTITIES[code.toLowerCase()] ?? entity),
+  );
+
 /** Turns rendered HTML back into plain text (used for search and snippets). */
 export const htmlToText = (markup: string): string => {
-  return markup
-    .replace(/<(script|style)[\s\S]*?<\/\1>/gi, " ")
-    // Block-level tags separate words; inline ones (<code>, <a>, <strong>…) must not add spaces.
-    .replace(/<\/?(?:p|div|br|hr|h[1-6]|li|ul|ol|dl|dt|dd|blockquote|pre|table|thead|tbody|tr|th|td|details|summary|figure|figcaption|section|article)\b[^>]*>/gi, " ")
-    .replace(/<[^>]+>/g, "")
-    .replace(/&(#x[\da-f]+|#\d+|[a-z]+);/gi, (entity, code: string) =>
-      code[0] === "#" ? decodeNumericEntity(code) : (ENTITIES[code.toLowerCase()] ?? entity),
-    )
+  return decodeEntities(
+    markup
+      .replace(/<(script|style)[\s\S]*?<\/\1>/gi, " ")
+      // Block-level tags separate words; inline ones (<code>, <a>, <strong>…) must not add spaces.
+      .replace(/<\/?(?:p|div|br|hr|h[1-6]|li|ul|ol|dl|dt|dd|blockquote|pre|table|thead|tbody|tr|th|td|details|summary|figure|figcaption|section|article)\b[^>]*>/gi, " ")
+      .replace(/<[^>]+>/g, ""),
+  )
     .replace(/\s+/g, " ")
     .trim();
 };

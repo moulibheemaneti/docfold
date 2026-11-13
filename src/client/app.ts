@@ -1,6 +1,7 @@
 // Browser script, bundled by `bundleClient()`. Pages work without it (plain
 // links and GET forms); it adds live search, the sidebar filter, remembered
-// folders, the mobile menu, the "/" shortcut and (in dev, with `watch` on) live reload.
+// folders, the mobile menu, the page outline's toggle and current section, the "/"
+// shortcut and (in dev, with `watch` on) live reload.
 
 import { resultsFragment, searchPanel } from "../pages/list";
 import { countFacets, parseSearchParams, SEARCH_KEYS, searchDocs } from "../search";
@@ -125,6 +126,96 @@ navFilter?.addEventListener("keydown", (event) => {
   const first = treeFiles.find((file) => !file.hidden)?.querySelector("a");
   if (first) location.href = first.href;
 });
+
+// ---------------------------------------------------------------------------
+// Document outline ("On this page"): the toggle on narrow screens, and marking
+// the section being read as the page scrolls.
+// ---------------------------------------------------------------------------
+
+const outline = document.querySelector<HTMLElement>(".doc .outline");
+const prose = document.querySelector<HTMLElement>(".doc .prose");
+
+if (outline && prose) {
+  const toggle = outline.querySelector<HTMLButtonElement>(".outline-toggle");
+  toggle?.addEventListener("click", () => {
+    toggle.setAttribute("aria-expanded", String(toggle.getAttribute("aria-expanded") !== "true"));
+  });
+
+  // Look the headings up inside the text: an id like "sidebar" or "main" also exists in the page shell.
+  const sections = [...outline.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')].flatMap((link) => {
+    const heading = prose.querySelector<HTMLElement>(`[id="${CSS.escape(link.getAttribute("href")!.slice(1))}"]`);
+    return heading ? [{ link, heading }] : [];
+  });
+
+  const hashId = (): string => {
+    try {
+      return decodeURIComponent(location.hash.slice(1));
+    } catch {
+      return location.hash.slice(1);
+    }
+  };
+
+  let current: HTMLAnchorElement | undefined;
+
+  const markCurrent = (link: HTMLAnchorElement | undefined): void => {
+    if (link === current) return;
+    current?.removeAttribute("aria-current");
+    link?.setAttribute("aria-current", "location");
+    current = link;
+
+    // Keep it in view when the outline is taller than the screen and scrolls on its own.
+    if (link && outline.scrollHeight > outline.clientHeight) {
+      const box = outline.getBoundingClientRect();
+      const item = link.getBoundingClientRect();
+      if (item.top < box.top) outline.scrollTop -= box.top - item.top + 8;
+      else if (item.bottom > box.bottom) outline.scrollTop += item.bottom - box.bottom + 8;
+    }
+  };
+
+  // A heading is "reached" once it scrolls up to just under the sticky header (where "#id" links put it).
+  let line = 0;
+  const measure = (): void => {
+    line = (parseFloat(getComputedStyle(root).scrollPaddingTop) || 72) + 8;
+  };
+
+  const update = (): void => {
+    let index = -1;
+    for (const [i, { heading }] of sections.entries()) {
+      if (heading.getBoundingClientRect().top > line) break;
+      index = i;
+    }
+
+    // At the very bottom the last headings can never reach the top: use the one just linked to if
+    // it's on screen, otherwise the last one.
+    const scrollable = root.scrollHeight > innerHeight + 2;
+    if (scrollable && innerHeight + scrollY >= root.scrollHeight - 2) {
+      const linked = sections.findIndex(({ heading }) => heading.id === hashId());
+      const top = linked >= 0 ? sections[linked]!.heading.getBoundingClientRect().top : -1;
+      index = top >= 0 && top < innerHeight ? linked : sections.length - 1;
+    }
+
+    markCurrent(sections[index]?.link);
+  };
+
+  let queued = false;
+  const schedule = (): void => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      update();
+    });
+  };
+
+  measure();
+  update();
+  addEventListener("scroll", schedule, { passive: true });
+  addEventListener("hashchange", schedule);
+  addEventListener("resize", () => {
+    measure();
+    schedule();
+  });
+}
 
 // ---------------------------------------------------------------------------
 // Search + filters on the home page (runs in the browser from search-index.json)

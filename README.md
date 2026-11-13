@@ -79,6 +79,8 @@ All fields are optional.
 
 Relative links between files work as you'd expect: `[see](../ios/0001-spm.md#context)` opens that page, and `![diagram](./img/flow.png)` shows the image. Only linked files are served (by `dev`) and copied (by `build`); hidden paths such as `.env` or `.git/…` and `node_modules` never are, even when linked. `build` lists the links it couldn't copy.
 
+Each page lists its `##` and `###` headings under **On this page**: a column on the right on wide screens, a collapsible box above the text on narrower ones (a plain list with JavaScript off). The section you're reading is highlighted as you scroll. Pages with fewer than two such headings don't get one.
+
 ## Search and filters
 
 The documents list (the site root, or `/docs` when there's a [home page](#home-page)) searches titles, tags, headings, file paths, status and body text. Every word must match; `"quoted phrases"` match exactly. Title and tag matches rank highest.
