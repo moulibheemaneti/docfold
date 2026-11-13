@@ -9,6 +9,7 @@ import {
   parseDoc,
   resolveRelativeUrl,
   splitFrontMatter,
+  toIndexedDoc,
 } from "../src/content";
 import { createUrls } from "../src/shared/urls";
 
@@ -85,6 +86,32 @@ describe("parseDoc", () => {
     expect(parseDoc("a.md", "# Closed heading ##\n").title).toBe("Closed heading");
     expect(parseDoc("a.md", "# The `foo` **API** &amp; [docs](x.md)\n").title).toBe("The foo API & docs");
     expect(parseDoc("a.md", "# 1. Introduction\n").title).toBe("1. Introduction");
+  });
+
+  test("collects H2 and H3 headings with ids for the outline", () => {
+    const doc = parseDoc(
+      "a.md",
+      [
+        "# Title",
+        "## The `foo` **API** &amp; more",
+        "### Sub",
+        "#### Too deep",
+        "## Sub",
+        "## 日本", // Bun gives it an empty id: nothing to link to
+        "<h2>Raw HTML</h2>",
+        '<h3 id="by-hand">By hand</h3>',
+      ].join("\n\n"),
+    );
+
+    expect(doc.outline).toEqual([
+      { level: 2, id: "the-foo-api-more", text: "The foo API & more" },
+      { level: 3, id: "sub", text: "Sub" },
+      { level: 2, id: "sub-1", text: "Sub" },
+      { level: 3, id: "by-hand", text: "By hand" },
+    ]);
+    // Search still sees every heading.
+    expect(doc.headings).toEqual(["The foo API & more", "Sub", "Too deep", "Sub", "日本", "Raw HTML", "By hand"]);
+    expect(toIndexedDoc(doc)).not.toHaveProperty("outline");
   });
 
   test("an out-of-range character reference in raw HTML doesn't break parsing", () => {

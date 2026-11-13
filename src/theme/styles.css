@@ -20,6 +20,7 @@
   --header-h: 56px;
   --sidebar-w: 290px;
   --content-w: 800px;
+  --outline-w: 220px;
   --radius: 10px;
 
   /* Brand colours (same in light and dark; override with theme.colors) */
@@ -1340,6 +1341,179 @@ a.badge:hover {
 
 .not-found h1 {
   margin-top: 0;
+}
+
+/* ==========================================================================
+   Document outline ("On this page")
+   Wide screens: a sticky column on the right. Narrower: a box above the text,
+   collapsed behind a toggle when JavaScript is on, a plain list when it's off.
+   ========================================================================== */
+
+.outline {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.outline-title {
+  margin: 0 0 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.outline-toggle {
+  display: none;
+}
+
+.outline-list,
+.outline-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.outline-list {
+  border-left: 1px solid var(--border);
+}
+
+.outline a {
+  display: block;
+  margin-left: -1px;
+  padding: 4px 0 4px 14px;
+  border-left: 2px solid transparent;
+  color: var(--fg-muted);
+  text-decoration: none;
+  overflow-wrap: break-word;
+}
+
+.outline ul ul a {
+  padding-left: 26px;
+}
+
+.outline a:hover {
+  color: var(--fg);
+}
+
+/* The section being read (set by the client script while scrolling) */
+.outline a[aria-current] {
+  border-left-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+@media (forced-colors: active) {
+  .outline a[aria-current] {
+    border-left-color: Highlight;
+  }
+}
+
+@media (min-width: 1280px) {
+  .doc.has-outline {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--outline-w);
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+      "crumbs outline"
+      "header outline"
+      "prose outline"
+      "footer outline";
+    column-gap: 48px;
+    max-width: calc(var(--content-w) + var(--outline-w) + 48px);
+  }
+
+  .has-outline>.breadcrumbs {
+    grid-area: crumbs;
+  }
+
+  .has-outline>.doc-header {
+    grid-area: header;
+  }
+
+  .has-outline>.prose {
+    grid-area: prose;
+  }
+
+  .has-outline>.doc-footer {
+    grid-area: footer;
+  }
+
+  /* Starts level with the breadcrumbs and stays there while the page scrolls. */
+  .has-outline>.outline {
+    grid-area: outline;
+    align-self: start;
+    position: sticky;
+    top: calc(var(--header-h) + 40px);
+    max-height: calc(100vh - var(--header-h) - 64px);
+    max-height: calc(100dvh - var(--header-h) - 64px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+@media (max-width: 1279px) {
+  .outline {
+    margin: -8px 0 32px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-subtle);
+  }
+
+  .js .outline {
+    padding: 0;
+  }
+
+  .js .outline-title {
+    display: none;
+  }
+
+  .js .outline-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 11px 16px;
+    border: 0;
+    border-radius: inherit;
+    background: none;
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--fg);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .outline-toggle::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    margin-left: auto;
+    border-right: 1.5px solid var(--fg-faint);
+    border-bottom: 1.5px solid var(--fg-faint);
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform 0.15s;
+  }
+
+  .outline-toggle[aria-expanded="true"]::after {
+    transform: rotate(-135deg) translate(-2px, -2px);
+  }
+
+  .js .outline-toggle[aria-expanded="false"]+.outline-list {
+    display: none;
+  }
+
+  .js .outline-list {
+    margin: 0 16px 14px;
+  }
+}
+
+@media print {
+  .outline {
+    display: none;
+  }
 }
 
 /* ==========================================================================

@@ -1,10 +1,10 @@
 import { describe, expect, test } from "bun:test";
 import { parseDoc } from "../src/content";
-import { highlight } from "../src/pages";
+import { docPage, highlight, outline } from "../src/pages";
 import { html, htmlToText, raw } from "../src/shared/html";
 import { createUrls } from "../src/shared/urls";
 import { buildTree, sidebar } from "../src/sidebar";
-import type { Library } from "../src/types";
+import type { Heading, Library, Site } from "../src/types";
 
 describe("html template", () => {
   test("escapes interpolated values but not nested templates or raw()", () => {
@@ -67,5 +67,62 @@ describe("buildTree", () => {
     expect(names(tree)).toEqual([{ a: [{ b: ["c.md"] }, "z.md"] }, { Z: ["y.md"] }, "2-x.md", "10-x.md", "b.md"]);
     expect(tree.docCount).toBe(6);
     expect(tree.children[0]).toMatchObject({ name: "a", path: "a", docCount: 2 });
+  });
+});
+
+describe("outline", () => {
+  const h = (level: number, text: string): Heading => ({ level, id: text.toLowerCase(), text });
+
+  test("nests H3s under the H2 before them and links to each heading", () => {
+    const markup = outline([h(3, "Lead"), h(2, "One"), h(3, "One-a"), h(3, "One-b"), h(2, "Two")]).toString();
+    expect(markup).toContain('<nav class="outline" aria-label="On this page">');
+    expect(markup).toContain(
+      '<ul class="outline-list" role="list"><li><a href="#lead">Lead</a></li><li><a href="#one">One</a><ul role="list"><li><a href="#one-a">One-a</a></li><li><a href="#one-b">One-b</a></li></ul></li><li><a href="#two">Two</a></li></ul>',
+    );
+    expect(markup).toContain('<button class="outline-toggle" type="button" aria-expanded="false">On this page</button>');
+  });
+
+  test("escapes heading text and ids", () => {
+    const markup = outline([{ level: 2, id: 'a"b', text: "<script>" }, h(2, "Two")]).toString();
+    expect(markup).toContain('<a href="#a&quot;b">&lt;script&gt;</a>');
+  });
+
+  test("is left out when there are fewer than two headings", () => {
+    expect(outline([])).toBe("");
+    expect(outline([h(2, "Only")])).toBe("");
+  });
+});
+
+describe("docPage", () => {
+  const site = {
+    title: "Docs",
+    sourceLabel: "./",
+    urls: createUrls("/"),
+    mode: "static",
+    liveReload: false,
+    head: "",
+    themeColor: "#4355e0",
+    header: { name: "Docs", tag: false, action: false },
+    home: false,
+  } as unknown as Site;
+
+  const render = (source: string) => {
+    const doc = parseDoc("guide/intro.md", source);
+    const library = { docs: [doc], tree: buildTree([doc]) } as unknown as Library;
+    return docPage(site, library, doc);
+  };
+
+  test("puts the outline between the header and the text", () => {
+    const page = render("## Why\n\nBecause.\n\n## How\n\nLike this.");
+    expect(page).toContain('<article class="doc has-outline">');
+    expect(page.indexOf('class="doc-header"')).toBeLessThan(page.indexOf('class="outline"'));
+    expect(page.indexOf('class="outline"')).toBeLessThan(page.indexOf('class="prose"'));
+    expect(page).toContain('<a href="#why">Why</a>');
+  });
+
+  test("has no outline without enough headings", () => {
+    const page = render("## Why\n\nBecause.");
+    expect(page).toContain('<article class="doc">');
+    expect(page).not.toContain('class="outline"');
   });
 });

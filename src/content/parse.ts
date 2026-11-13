@@ -3,11 +3,11 @@
  */
 
 import { posix } from "node:path";
-import { htmlToText } from "../shared/html";
+import { decodeEntities, htmlToText } from "../shared/html";
 import { warn } from "../shared/log";
 import { createUrls, hasScheme } from "../shared/urls";
 import { humanize, normalizeDate, normalizeTags, optionalString, splitFrontMatter } from "./front-matter";
-import type { Doc, IndexedDoc, ResolvedLink, Urls } from "../types";
+import type { Doc, Heading, IndexedDoc, ResolvedLink, Urls } from "../types";
 
 const MARKDOWN_OPTIONS: Bun.markdown.Options = {
   headings: { ids: true, autolink: true },
@@ -27,6 +27,20 @@ const LEADING_H1 = /^\s*#[ \t]+(.+?)(?:[ \t]+#+)?[ \t]*(?:\r?\n|$)/;
  * heading, not a paragraph, so text like "1. Intro" isn't read as a list.
  */
 const headingText = (markdown: string): string => htmlToText(Bun.markdown.html(`# ${markdown}`)) || markdown;
+
+/** Heading levels listed in a page's outline: H2 and H3, like most docs sites. */
+export const OUTLINE_LEVELS: readonly number[] = [2, 3];
+
+/**
+ * Every heading in rendered markup, with its id ("" when it has none: raw-HTML headings, or text
+ * Bun can't turn into an id, such as "日本").
+ */
+const findHeadings = (markup: string): Heading[] =>
+  [...markup.matchAll(/<h([1-6])\b([^>]*)>([\s\S]*?)<\/h\1>/gi)].map((match) => ({
+    level: Number(match[1]),
+    id: decodeEntities(match[2]?.match(/\bid="([^"]*)"/i)?.[1] ?? ""),
+    text: htmlToText(match[3] ?? ""),
+  }));
 
 /**
  * Makes relative links inside a document work in the browser:
@@ -85,7 +99,7 @@ export const parseDoc = (relPath: string, source: string, urls: Urls = DEFAULT_U
 
   const assets = new Set<string>();
   const markup = rewriteRelativeUrls(Bun.markdown.html(body, MARKDOWN_OPTIONS), relPath, urls, assets);
-  const headings = [...markup.matchAll(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/g)].map((m) => htmlToText(m[1] ?? ""));
+  const headings = findHeadings(markup);
 
   return {
     relPath,
@@ -99,7 +113,8 @@ export const parseDoc = (relPath: string, source: string, urls: Urls = DEFAULT_U
     date: normalizeDate(data.date),
     tags: normalizeTags(data.tags ?? data.tag),
     text: htmlToText(markup),
-    headings,
+    headings: headings.map((heading) => heading.text),
+    outline: headings.filter((heading) => heading.id && heading.text && OUTLINE_LEVELS.includes(heading.level)),
     meta: data,
     body,
     html: markup,
@@ -109,6 +124,6 @@ export const parseDoc = (relPath: string, source: string, urls: Urls = DEFAULT_U
 
 /** The subset of a document that the browser downloads for search. */
 export const toIndexedDoc = (doc: Doc): IndexedDoc => {
-  const { meta: _meta, body: _body, html: _html, assets: _assets, ...indexed } = doc;
+  const { meta: _meta, body: _body, html: _html, assets: _assets, outline: _outline, ...indexed } = doc;
   return indexed;
 };
