@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.0](https://github.com/moulibheemaneti/docfold/compare/docfold-v0.2.0...docfold-v0.3.0) (2026-11-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **urls:** page URLs and built file names under docs/ are lower-case, with hyphens for spaces and underscores. Links to the old addresses stop working on static hosts.
+
+### Features
+
+* **urls:** lowercase, hyphenated page slugs ([#8](https://github.com/moulibheemaneti/docfold/issues/8)) ([8dc6393](https://github.com/moulibheemaneti/docfold/commit/8dc6393b5b0f96153eeb9ca2f19329fce2163b6d))
+
 ## [0.2.0](https://github.com/moulibheemaneti/docfold/compare/docfold-v0.1.1...docfold-v0.2.0) (2026-11-13)
 
 
