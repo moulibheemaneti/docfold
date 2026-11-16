@@ -10,6 +10,7 @@ export { build, createDevServer, createPreviewServer } from "./commands";
 export { defineConfig, loadConfig } from "./config";
 export { ContentStore, loadLibrary, parseDoc, splitFrontMatter, toIndexedDoc } from "./content";
 export { countFacets, DEFAULT_PARAMS, parseSearchParams, searchDocs, toQueryString } from "./search";
+export { toSlug } from "./shared/slug";
 export { createUrls } from "./shared/urls";
 export { buildTree } from "./sidebar";
 export type * from "./types";

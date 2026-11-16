@@ -5,9 +5,17 @@
  */
 
 import { naturalCompare } from "../shared/natural-compare";
+import { slugifyPath } from "../shared/slug";
 import type { FolderNode, TreeInput } from "../types";
 
-const folderNode = (name: string, path: string): FolderNode => ({ kind: "folder", name, path, children: [], docCount: 0 });
+const folderNode = (name: string, path: string): FolderNode => ({
+  kind: "folder",
+  name,
+  path,
+  slug: slugifyPath(path),
+  children: [],
+  docCount: 0,
+});
 
 export const buildTree = (docs: readonly TreeInput[]): FolderNode => {
   const root = folderNode("", "");
@@ -50,6 +58,9 @@ const finalize = (folder: FolderNode): number => {
   return folder.docCount;
 };
 
-/** True when `slug` lives somewhere inside `folder`. */
+/**
+ * True when the page `slug` lives somewhere inside `folder`. Compares slugs, not file paths:
+ * "Guides/My_Notes.md" has the slug "guides/my-notes" and sits in the folder slugged "guides".
+ */
 export const folderContains = (folder: FolderNode, slug: string | undefined): boolean =>
-  !!slug && (folder.path === "" || slug.startsWith(`${folder.path}/`));
+  !!slug && (folder.slug === "" || slug.startsWith(`${folder.slug}/`));

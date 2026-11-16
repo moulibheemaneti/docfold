@@ -4,7 +4,7 @@
  *
  *   base + ""                    home page (or the documents list when there's no home page)
  *   base + "docs"                documents list: search + filters (when there is a home page)
- *   base + "docs/<slug>"         one document
+ *   base + "docs/<slug>"         one document (slug: see ./slug.ts)
  *   base + "files/<path>"        a non-markdown file from the docs folder
  *   base + "assets/<name>"       the site's CSS and JS
  *   base + "search-index.json"   data for in-browser search

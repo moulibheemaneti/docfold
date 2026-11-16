@@ -8,7 +8,7 @@
  *   dist/
  *     index.html                 home page, or search + filters when there's no home page
  *     docs.html                  search + filters at "/docs" (only with a home page)
- *     docs/<slug>.html           one page per markdown file, at "/docs/<slug>"
+ *     docs/<slug>.html           one page per markdown file, at "/docs/<slug>" (Guides/My_Notes.md → docs/guides/my-notes.html)
  *     files/<path>               images / attachments the markdown links to
  *     assets/styles.css, app.js
  *     search-index.json
@@ -103,7 +103,12 @@ const copyLinkedFiles = async (library: Library, srcDir: string, outDir: string)
 export const build = async (config: ResolvedConfig): Promise<BuildResult> => {
   const started = performance.now();
   const site = createSite(config, "static");
-  const library = await loadLibrary(config.srcDir, { urls: site.urls, ignore: ignoredFolders(config) });
+  // Before anything is written: two files with the same page address stop the build.
+  const library = await loadLibrary(config.srcDir, {
+    urls: site.urls,
+    ignore: ignoredFolders(config),
+    slugCollisions: "error",
+  });
   const [styles, clientScript] = await Promise.all([loadStyles(config), bundleClient()]);
 
   await prepareOutDir(config);

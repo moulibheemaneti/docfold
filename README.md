@@ -81,6 +81,23 @@ Relative links between files work as you'd expect: `[see](../ios/0001-spm.md#con
 
 Each page lists its `##` and `###` headings under **On this page**: a column on the right on wide screens, a collapsible box above the text on narrower ones (a plain list with JavaScript off). The section you're reading is highlighted as you scroll. Pages with fewer than two such headings don't get one.
 
+## Page addresses
+
+Each markdown file becomes a page at `/docs/<slug>`. The slug is the file's path inside the docs folder without `.md`, lower-cased, with spaces and underscores turned into a hyphen. Folder names follow the same rule.
+
+| File | Page address |
+|---|---|
+| `intro.md` | `/docs/intro` |
+| `CONTRIBUTING.md` | `/docs/contributing` |
+| `Guides/My_Notes.md` | `/docs/guides/my-notes` |
+| `notes/Release Notes.md` | `/docs/notes/release-notes` |
+
+Links between files use the same rule, so `[guide](./CONTRIBUTING.md)` and `[guide](./contributing.md)` both open `/docs/contributing`. Page titles don't change: they still come from `title`, the first heading or the file name. Images and other linked files keep their exact path (`/files/Guides/Screen_Shot.png`).
+
+Earlier versions kept the file name as it was (`/docs/CONTRIBUTING`, `/docs/Guides/My_Notes`). `dev` and `preview` redirect those addresses to the new ones; static hosts don't, so update any bookmarks or outside links that use upper case, spaces or underscores.
+
+Two files that end up with the same address, such as `Setup.md` and `SETUP.md`, stop `docfold build` with an error that names both. `dev` prints a warning and shows the first one. Scripts can get a file's slug with `toSlug("Guides/My_Notes.md")` (→ `"guides/my-notes"`).
+
 ## Search and filters
 
 The documents list (the site root, or `/docs` when there's a [home page](#home-page)) searches titles, tags, headings, file paths, status and body text. Every word must match; `"quoted phrases"` match exactly. Title and tag matches rank highest.
