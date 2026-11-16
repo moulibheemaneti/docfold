@@ -448,3 +448,96 @@ describe("build + preview", () => {
     }
   });
 });
+
+describe("page addresses", () => {
+  // Upper case and underscores in file and folder names, as in many repos (README, CONTRIBUTING…).
+  const writeDocs = async (dir: string) => {
+    await Bun.write(join(dir, "docs/CONTRIBUTING.md"), "# Contributing\n\nSee [notes](Guides/My_Notes.md#setup).\n");
+    await Bun.write(
+      join(dir, "docs/Guides/My_Notes.md"),
+      "# My notes\n\nBack to [contributing](../contributing.md) and ![shot](Shots/Screen_Shot.PNG).\n",
+    );
+    await Bun.write(join(dir, "docs/Guides/Shots/Screen_Shot.PNG"), "PNG");
+  };
+
+  test("dev serves lower-case, hyphenated addresses and redirects the old ones", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "docfold-slugs-"));
+    await writeDocs(dir);
+    const dev = await createDevServer(await loadConfig(dir, { srcDir: "docs" }), { port: 0 });
+    const get = client(dev);
+    try {
+
+      const contributing = await get("/docs/contributing");
+      expect(contributing.status).toBe(200);
+      expect(await contributing.text()).toContain('href="/docs/guides/my-notes#setup"');
+
+      const notes = await (await get("/docs/guides/my-notes")).text();
+      expect(notes).toContain('href="/docs/contributing"');
+      expect(notes).toContain('src="/files/Guides/Shots/Screen_Shot.PNG"');
+      // The current page's folder is marked, so it stays open.
+      expect(notes).toContain('data-path="Guides" data-search="guides" data-current');
+      expect((await get("/files/Guides/Shots/Screen_Shot.PNG")).status).toBe(200);
+
+      const moved = async (path: string) => {
+        const res = await get(path);
+        return [res.status, res.headers.get("location")];
+      };
+      expect(await moved("/docs/CONTRIBUTING")).toEqual([301, "/docs/contributing"]);
+      expect(await moved("/docs/CONTRIBUTING.md")).toEqual([301, "/docs/contributing"]);
+      expect(await moved("/docs/Guides/My_Notes?x=1")).toEqual([301, "/docs/guides/my-notes?x=1"]);
+      expect(await moved("/docs/Guides/My%20Notes.html")).toEqual([301, "/docs/guides/my-notes"]);
+      expect((await get("/docs/Missing")).status).toBe(404);
+    } finally {
+      await dev.stop();
+      await rm(dir, { recursive: true, force: true });
+    }
+  });
+
+  test("build writes lower-case page files, and preview redirects old addresses to them", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "docfold-slugs-"));
+    try {
+      await writeDocs(dir);
+      const config = await loadConfig(dir, { srcDir: "docs", outDir: "../dist", base: "/repo/" });
+      await build(config);
+
+      const files = (await readdir(config.outDir, { recursive: true })).map(String);
+      expect(files).toEqual(
+        expect.arrayContaining(["docs/contributing.html", "docs/guides/my-notes.html", "files/Guides/Shots/Screen_Shot.PNG"]),
+      );
+      expect(await Bun.file(join(config.outDir, "docs/contributing.html")).text()).toContain(
+        'href="/repo/docs/guides/my-notes#setup"',
+      );
+
+      const preview = await createPreviewServer(config, { port: 0 });
+      const get = (path: string) => fetch(new URL(path, preview.server.url), { redirect: "manual" });
+      try {
+        expect((await get("/repo/docs/guides/my-notes")).status).toBe(200);
+        // Underscores rather than case only: a case-insensitive file system (macOS) would serve "/docs/CONTRIBUTING" as is.
+        expect((await get("/repo/docs/Guides/My_Notes?x=1")).headers.get("location")).toBe("/repo/docs/guides/my-notes?x=1");
+        expect((await get("/repo/docs/Guides/My_Notes.html")).headers.get("location")).toBe("/repo/docs/guides/my-notes");
+        expect((await get("/repo/docs/Nope")).status).toBe(404);
+      } finally {
+        await preview.stop();
+      }
+    } finally {
+      await rm(dir, { recursive: true, force: true });
+    }
+  });
+
+  test("build fails, naming both files, when two files would share an address", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "docfold-slugs-"));
+    try {
+      await Bun.write(join(dir, "docs/Release_Notes.md"), "# Underscore");
+      await Bun.write(join(dir, "docs/release notes.md"), "# Space");
+      const config = await loadConfig(dir, { srcDir: "docs" });
+
+      const error = await build(config).catch((err: unknown) => err);
+      expect(error).toBeInstanceOf(Error);
+      expect((error as Error).message).toContain('"release notes.md" and "Release_Notes.md" → /docs/release-notes');
+      // Nothing was written.
+      expect(await Bun.file(join(config.outDir, "index.html")).exists()).toBe(false);
+    } finally {
+      await rm(dir, { recursive: true, force: true });
+    }
+  });
+});

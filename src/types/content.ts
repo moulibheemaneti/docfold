@@ -6,7 +6,10 @@ import type { Urls } from "./site";
 export interface Doc {
   /** Path relative to the docs folder, always "/"-separated, e.g. "ios/0001-disable-spm.md". */
   relPath: string;
-  /** `relPath` without ".md"; unique key used in URLs. */
+  /**
+   * `relPath` without ".md", lower-cased, with spaces and underscores as "-": "Guides/My_Notes.md"
+   * → "guides/my-notes". The page's address ("docs/<slug>") and its key in `Library.bySlug`.
+   */
   slug: string;
   /** Page URL including the configured base, e.g. "/docs/ios/0001-disable-spm". */
   url: string;
@@ -89,6 +92,19 @@ export interface LoadOptions {
   urls?: Urls;
   /** Absolute folders to skip (e.g. the build output when it sits inside the docs folder). */
   ignore?: readonly string[];
+  /**
+   * What to do when files would share a page address ("Setup.md" and "SETUP.md" are both "setup"):
+   * "warn" (the default, used by `dev`) prints a warning and keeps the first file of each group;
+   * "error" (used by `build`) throws an error naming the files.
+   */
+  slugCollisions?: "warn" | "error";
+}
+
+/** Files whose paths turn into the same slug. */
+export interface SlugCollision {
+  slug: string;
+  /** Paths relative to the docs folder, in library order (the first is the one `dev` shows). */
+  relPaths: string[];
 }
 
 export interface StoreOptions extends LoadOptions {

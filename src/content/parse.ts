@@ -5,6 +5,7 @@
 import { posix } from "node:path";
 import { decodeEntities, htmlToText } from "../shared/html";
 import { warn } from "../shared/log";
+import { toSlug } from "../shared/slug";
 import { createUrls, hasScheme } from "../shared/urls";
 import { humanize, normalizeDate, normalizeTags, optionalString, splitFrontMatter } from "./front-matter";
 import type { Doc, Heading, IndexedDoc, ResolvedLink, Urls } from "../types";
@@ -44,7 +45,8 @@ const findHeadings = (markup: string): Heading[] =>
 
 /**
  * Makes relative links inside a document work in the browser:
- * `./other.md#x` → `<base>docs/<folder>/other#x`, `./diagram.png` → `<base>files/<folder>/diagram.png`.
+ * `./Other_Doc.md#x` → `<base>docs/<folder>/other-doc#x` (the page's slug, see `toSlug`),
+ * `./Diagram.png` → `<base>files/<folder>/Diagram.png` (other files keep their exact path).
  * Absolute URLs, anchors and anything pointing outside the docs folder are left alone (null).
  */
 export const resolveRelativeUrl = (value: string, fromRelPath: string, urls: Urls = DEFAULT_URLS): ResolvedLink | null => {
@@ -61,7 +63,7 @@ export const resolveRelativeUrl = (value: string, fromRelPath: string, urls: Url
 
   const target = posix.normalize(posix.join(posix.dirname(fromRelPath), decoded));
   if (target === ".." || target.startsWith("../") || target.endsWith("/")) return null;
-  if (/\.md$/i.test(target)) return { href: urls.doc(target.replace(/\.md$/i, "")) + suffix, kind: "doc", target };
+  if (/\.md$/i.test(target)) return { href: urls.doc(toSlug(target)) + suffix, kind: "doc", target };
   return { href: urls.file(target) + suffix, kind: "file", target };
 };
 
@@ -82,7 +84,7 @@ export const parseDoc = (relPath: string, source: string, urls: Urls = DEFAULT_U
   const { data, body: rawBody, error } = splitFrontMatter(source);
   if (error) warn(`Could not parse front matter in ${relPath}: ${error}`);
 
-  const slug = relPath.replace(/\.md$/i, "");
+  const slug = toSlug(relPath);
   const fileName = posix.basename(relPath);
   const folder = posix.dirname(relPath) === "." ? "" : posix.dirname(relPath);
 

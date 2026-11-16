@@ -3,8 +3,8 @@ import { parseDoc } from "../src/content";
 import { docPage, highlight, outline } from "../src/pages";
 import { html, htmlToText, raw } from "../src/shared/html";
 import { createUrls } from "../src/shared/urls";
-import { buildTree, sidebar } from "../src/sidebar";
-import type { Heading, Library, Site } from "../src/types";
+import { buildTree, folderContains, sidebar } from "../src/sidebar";
+import type { FolderNode, Heading, Library, Site } from "../src/types";
 
 describe("html template", () => {
   test("escapes interpolated values but not nested templates or raw()", () => {
@@ -54,6 +54,37 @@ describe("sidebar", () => {
     expect(markup).toContain('<li class="tree-folder" data-path="guide" data-search="guide" data-current>');
     expect(markup.match(/<svg/g)).toHaveLength(2); // the filter box and the one folder
   });
+
+  test("opens the folder of the current page when folder and file names have upper case and underscores", () => {
+    const docs = ["Guides/Team_Notes/My_Notes.md", "Guides/intro.md", "Other/x.md"].map((path) => parseDoc(path, "text"));
+    const library = { docs, tree: buildTree(docs) } as unknown as Library;
+    const markup = sidebar(library, createUrls("/"), "guides/team-notes/my-notes", false).value;
+
+    expect(markup).toContain('<li class="tree-folder" data-path="Guides" data-search="guides" data-current>');
+    expect(markup).toContain('<li class="tree-folder" data-path="Guides/Team_Notes" data-search="team_notes" data-current>');
+    expect(markup).toContain('<li class="tree-folder" data-path="Other" data-search="other">');
+    expect(markup).toContain('<a href="/docs/guides/team-notes/my-notes" title="Guides/Team_Notes/My_Notes.md" aria-current="page">');
+  });
+});
+
+describe("folderContains", () => {
+  const tree = buildTree(["Guides/My_Notes.md", "Guides/Team_Notes/a.md", "Guides-Old/b.md"].map((path) => parseDoc(path, "text")));
+  const folder = (name: string) => tree.children.find((child) => child.kind === "folder" && child.name === name) as FolderNode;
+
+  test("matches page slugs against folder slugs, not file paths", () => {
+    expect(folder("Guides")).toMatchObject({ path: "Guides", slug: "guides" });
+    expect(folderContains(folder("Guides"), "guides/my-notes")).toBe(true);
+    expect(folderContains(folder("Guides"), "guides/team-notes/a")).toBe(true);
+    expect(folderContains(folder("Guides").children[0] as FolderNode, "guides/team-notes/a")).toBe(true);
+    expect(folderContains(tree, "anything")).toBe(true);
+  });
+
+  test("doesn't match look-alike folders, other folders or no page", () => {
+    expect(folderContains(folder("Guides"), "guides-old/b")).toBe(false);
+    expect(folderContains(folder("Guides-Old"), "guides/my-notes")).toBe(false);
+    expect(folderContains(folder("Guides"), "Guides/My_Notes")).toBe(false);
+    expect(folderContains(folder("Guides"), undefined)).toBe(false);
+  });
 });
 
 describe("buildTree", () => {
@@ -66,7 +97,7 @@ describe("buildTree", () => {
 
     expect(names(tree)).toEqual([{ a: [{ b: ["c.md"] }, "z.md"] }, { Z: ["y.md"] }, "2-x.md", "10-x.md", "b.md"]);
     expect(tree.docCount).toBe(6);
-    expect(tree.children[0]).toMatchObject({ name: "a", path: "a", docCount: 2 });
+    expect(tree.children[0]).toMatchObject({ name: "a", path: "a", slug: "a", docCount: 2 });
   });
 });
 

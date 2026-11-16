@@ -10,6 +10,7 @@ import { ContentStore } from "../content";
 import { docPage, notFoundPage } from "../pages";
 import { parseSearchParams, SEARCH_KEYS, searchDocs } from "../search";
 import { decodePathAfter, isFile, isInside } from "../shared/paths";
+import { toSlug } from "../shared/slug";
 import { createSite, ignoredFolders, renderHome, renderList, searchIndex } from "../site";
 import { bundleClient, loadStyles } from "./assets";
 import { htmlResponse, listen } from "./serve";
@@ -112,9 +113,10 @@ export const createDevServer = async (config: ResolvedConfig, options: DevServer
       const doc = library.bySlug.get(slug);
       if (doc) return htmlResponse(docPage(site, library, doc));
 
-      // ".../foo.md" or ".../foo.html" → ".../foo"
-      const withoutExtension = library.bySlug.get(slug.replace(/\.(?:md|html)$/i, ""));
-      if (withoutExtension) return Response.redirect(withoutExtension.url + search, 301);
+      // Old or hand-typed addresses go to the page's own one: ".../CONTRIBUTING" → ".../contributing",
+      // ".../Guides/My_Notes" → ".../guides/my-notes", ".../foo.md" or ".../foo.html" → ".../foo".
+      const moved = library.bySlug.get(toSlug(slug.replace(/\.html$/i, "")));
+      if (moved) return Response.redirect(moved.url + search, 301);
 
       return notFound(pathname);
     },

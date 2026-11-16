@@ -1,8 +1,9 @@
-import { afterAll, describe, expect, test } from "bun:test";
+import { afterAll, describe, expect, spyOn, test } from "bun:test";
 import { chmod, mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
+  findSlugCollisions,
   loadLibrary,
   normalizeDate,
   normalizeTags,
@@ -11,6 +12,7 @@ import {
   splitFrontMatter,
   toIndexedDoc,
 } from "../src/content";
+import { toSlug } from "../src/shared/slug";
 import { createUrls } from "../src/shared/urls";
 
 describe("splitFrontMatter", () => {
@@ -49,6 +51,29 @@ describe("normalizers", () => {
     expect(normalizeDate("2026-11-11T09:30:00Z")).toBe("2026-11-11");
     expect(normalizeDate(new Date("2026-01-02T00:00:00Z"))).toBe("2026-01-02");
     expect(normalizeDate("not a date")).toBeUndefined();
+  });
+});
+
+describe("toSlug", () => {
+  test("drops .md, lower-cases every segment and turns spaces and underscores into one hyphen", () => {
+    expect(toSlug("CONTRIBUTING.md")).toBe("contributing");
+    expect(toSlug("Guides/My_Notes.md")).toBe("guides/my-notes");
+    expect(toSlug("Team Notes/Release  Notes.MD")).toBe("team-notes/release-notes");
+    expect(toSlug("a__b _ c.md")).toBe("a-b-c");
+    expect(toSlug("Q&A - 2026.md")).toBe("q&a-2026");
+    expect(toSlug("ios/0001-disable-spm.md")).toBe("ios/0001-disable-spm");
+  });
+
+  test("keeps hyphens that aren't next to a space or underscore, and other characters", () => {
+    expect(toSlug("a--b.md")).toBe("a--b");
+    expect(toSlug("Café/Ünïcode.md")).toBe("café/ünïcode");
+    expect(toSlug("v1.2 notes.md")).toBe("v1.2-notes");
+  });
+
+  test("is stable: a slug maps to itself", () => {
+    for (const path of ["CONTRIBUTING.md", "Guides/My_Notes.md", "Q&A - 2026.md"]) {
+      expect(toSlug(toSlug(path))).toBe(toSlug(path));
+    }
   });
 });
 
@@ -132,6 +157,30 @@ describe("parseDoc", () => {
     expect(doc.assets).toEqual(["guides/img/shot.png"]);
   });
 
+  test("page addresses are lower-case and hyphenated; titles and file names are not", () => {
+    const contributing = parseDoc("CONTRIBUTING.md", "Body");
+    expect(contributing).toMatchObject({ slug: "contributing", url: "/docs/contributing", fileName: "CONTRIBUTING.md" });
+    expect(contributing.title).toBe("CONTRIBUTING");
+
+    const notes = parseDoc("Guides/My_Notes.md", "Body");
+    expect(notes).toMatchObject({ slug: "guides/my-notes", url: "/docs/guides/my-notes", folder: "Guides", relPath: "Guides/My_Notes.md" });
+    expect(notes.title).toBe("My Notes");
+    expect(parseDoc("Guides/My_Notes.md", "---\ntitle: Notes, Mine\n---\nBody").title).toBe("Notes, Mine");
+  });
+
+  test("links to a doc use its slug whatever case they are written in; other files keep their path", () => {
+    const doc = parseDoc(
+      "Guides/My_Notes.md",
+      "[a](../CONTRIBUTING.md) [b](../contributing.md#Setup) [c](./Team_Notes.md?x=1) ![shot](./Shots/Screen_Shot.PNG) [pdf](../Spec%20Sheet.PDF)",
+    );
+    expect(doc.html).toContain('href="/docs/contributing"');
+    expect(doc.html).toContain('href="/docs/contributing#Setup"');
+    expect(doc.html).toContain('href="/docs/guides/team-notes?x=1"');
+    expect(doc.html).toContain('src="/files/Guides/Shots/Screen_Shot.PNG"');
+    expect(doc.html).toContain('href="/files/Spec%20Sheet.PDF"');
+    expect(doc.assets).toEqual(["Guides/Shots/Screen_Shot.PNG", "Spec Sheet.PDF"]);
+  });
+
   test("prefixes every generated URL with the base path", () => {
     const doc = parseDoc("a/b.md", "[c](c.md) ![d](d.png)", createUrls("/my-repo/"));
     expect(doc.url).toBe("/my-repo/docs/a/b");
@@ -147,11 +196,19 @@ describe("resolveRelativeUrl", () => {
     expect(resolveRelativeUrl("mailto:me@example.com", "a.md")).toBeNull();
   });
 
-  test("encodes spaces and keeps query/hash", () => {
-    expect(resolveRelativeUrl("my%20notes.md?x=1#h", "a.md")).toEqual({
-      href: "/docs/my%20notes?x=1#h",
+  test("turns spaces in doc links into hyphens and keeps query/hash", () => {
+    expect(resolveRelativeUrl("My%20Notes.md?x=1#h", "a.md")).toEqual({
+      href: "/docs/my-notes?x=1#h",
       kind: "doc",
-      target: "my notes.md",
+      target: "My Notes.md",
+    });
+  });
+
+  test("encodes spaces in links to other files and keeps their case", () => {
+    expect(resolveRelativeUrl("Img/My%20Shot.png#x", "a.md")).toEqual({
+      href: "/files/Img/My%20Shot.png#x",
+      kind: "file",
+      target: "Img/My Shot.png",
     });
   });
 });
@@ -216,6 +273,45 @@ describe("loadLibrary", () => {
 
     const library = await loadLibrary(root);
     expect(library.docs.map((doc) => doc.relPath)).toEqual(["ok.md"]);
+  });
+
+  test("findSlugCollisions groups files that would share a page address", () => {
+    const docs = ["SETUP.md", "Setup.md", "guides/My_Notes.md", "guides/my notes.md", "guides/my-notes-2.md", "intro.md"].map(
+      (relPath) => ({ relPath, slug: toSlug(relPath) }),
+    );
+    expect(findSlugCollisions(docs)).toEqual([
+      { slug: "setup", relPaths: ["SETUP.md", "Setup.md"] },
+      { slug: "guides/my-notes", relPaths: ["guides/My_Notes.md", "guides/my notes.md"] },
+    ]);
+    expect(findSlugCollisions(docs.slice(-2))).toEqual([]);
+  });
+
+  // "My_Notes.md" and "my notes.md" rather than "Setup.md" and "SETUP.md": they can sit side by side on
+  // case-insensitive file systems (macOS, Windows) too.
+  test("files with the same page address: an error naming both, or a warning that keeps the first", async () => {
+    const root = await mkdtemp(join(tmpdir(), "docs-test-"));
+    dirs.push(root);
+    await Bun.write(join(root, "Guides/My_Notes.md"), "# Underscore");
+    await Bun.write(join(root, "Guides/my notes.md"), "# Space");
+    await Bun.write(join(root, "intro.md"), "# Intro");
+
+    const error = await loadLibrary(root, { slugCollisions: "error" }).catch((err: unknown) => err);
+    expect(error).toBeInstanceOf(Error);
+    expect((error as Error).message).toContain('"Guides/my notes.md" and "Guides/My_Notes.md" → /docs/guides/my-notes');
+
+    const warn = spyOn(console, "warn").mockImplementation(() => {});
+    try {
+      const library = await loadLibrary(root);
+      expect(warn).toHaveBeenCalledTimes(1);
+      expect(String(warn.mock.calls[0]?.[0])).toContain(
+        '"Guides/my notes.md" and "Guides/My_Notes.md" → /docs/guides/my-notes  (showing "Guides/my notes.md")',
+      );
+      expect(library.docs.map((doc) => doc.relPath)).toEqual(["Guides/my notes.md", "intro.md"]);
+      expect(library.bySlug.get("guides/my-notes")?.title).toBe("Space");
+      expect(library.tree.children[0]).toMatchObject({ kind: "folder", docCount: 1 });
+    } finally {
+      warn.mockRestore();
+    }
   });
 
   test("returns an empty library for a missing folder", async () => {

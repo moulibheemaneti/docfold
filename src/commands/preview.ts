@@ -7,7 +7,8 @@
 import { resolve } from "node:path";
 import { DEFAULTS } from "../shared/constants";
 import { decodePathAfter, isFile, isInside } from "../shared/paths";
-import { normalizeBase } from "../shared/urls";
+import { toSlug } from "../shared/slug";
+import { createUrls, normalizeBase } from "../shared/urls";
 import { BUILD_MARKER } from "./build";
 import { listen } from "./serve";
 import type { PreviewServer, PreviewServerOptions, ResolvedConfig } from "../types";
@@ -28,6 +29,7 @@ export const createPreviewServer = async (config: ResolvedConfig, options: Previ
     throw new Error(`No build found in ${outDir}. Run "docfold build" first.`);
   }
   const base = await builtBase(outDir, config.base);
+  const urls = createUrls(base);
 
   /** The file at `relPath` inside outDir, or null (also for folders and paths escaping outDir). */
   const fileAt = async (relPath: string): Promise<Bun.BunFile | null> => {
@@ -58,6 +60,15 @@ export const createPreviewServer = async (config: ResolvedConfig, options: Previ
     for (const candidate of candidates) {
       const file = await fileAt(candidate);
       if (file) return new Response(file);
+    }
+
+    // A page address written the old way or by hand ("/docs/CONTRIBUTING", "/docs/Guides/My_Notes")
+    // → the page's own one ("/docs/contributing"). Unlike the rest of preview, static hosts don't do this.
+    if (relPath.startsWith("docs/")) {
+      const slug = toSlug(relPath.slice("docs/".length).replace(/\.html$/i, ""));
+      if (slug && !slug.endsWith("/") && `docs/${slug}` !== relPath && (await fileAt(`docs/${slug}.html`))) {
+        return Response.redirect(urls.doc(slug) + search, 301);
+      }
     }
     return notFound();
   };

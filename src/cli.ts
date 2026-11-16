@@ -109,6 +109,7 @@ const main = async (argv: string[]): Promise<void> => {
 };
 
 main(Bun.argv.slice(2)).catch((err: unknown) => {
-  console.error(`\n  docfold: ${errorMessage(err)}\n`);
+  // Multi-line messages (such as the list of files sharing a page address) stay indented.
+  console.error(`\n  docfold: ${errorMessage(err).replaceAll("\n", "\n  ")}\n`);
   process.exit(1);
 });
