@@ -1,5 +1,7 @@
 /** Options for `docfold.config.ts` (`UserConfig`) and the same options after defaults are applied (`ResolvedConfig`). */
 
+import type { ResolvedBuilds } from "./builds";
+
 export type CssVariables = Record<string, string>;
 
 export interface ThemeConfig {
@@ -97,6 +99,76 @@ export interface WatchConfig {
   debounce?: number;
 }
 
+/** Fields every build option has. */
+interface BuildOptionBase {
+  /** Name used in `{id}` placeholders, the form and the `DOCFOLD_OPT_<ID>` environment variable. Letters, digits, "-" and "_". */
+  id: string;
+  /** Text beside the field. Default: the id. */
+  label?: string;
+  /** Small hint under the field. */
+  description?: string;
+}
+
+/** One of a fixed list of values. */
+export interface BuildSelectOption extends BuildOptionBase {
+  type: "select";
+  choices: string[];
+  /** Must be one of `choices`. Default: the first choice. */
+  default?: string;
+}
+
+/** A checkbox. `{id}` becomes `flag` when it is on and nothing when it is off. */
+export interface BuildBooleanOption extends BuildOptionBase {
+  type: "boolean";
+  /** Inserted where `{id}` appears when the box is ticked, e.g. "--split-per-abi". Default: "true". */
+  flag?: string;
+  /** Default: false. */
+  default?: boolean;
+}
+
+/** Free text. */
+export interface BuildTextOption extends BuildOptionBase {
+  type: "text";
+  /** The whole value must match this regular expression (like the HTML `pattern` attribute). */
+  pattern?: string;
+  default?: string;
+  placeholder?: string;
+}
+
+export type BuildOptionConfig = BuildSelectOption | BuildBooleanOption | BuildTextOption;
+
+/** A command the Builds section of `docfold dev` can run. */
+export interface BuildCommandConfig {
+  /** Unique; lower-case letters, digits, "-" and "_". Also the page address: /builds/<id>. */
+  id: string;
+  /** Default: the id. */
+  label?: string;
+  /** Commands with the same group are listed together. */
+  group?: string;
+  description?: string;
+  /** Folder to run in, relative to the config file. Default: `builds.cwd`. */
+  cwd?: string;
+  /**
+   * The command. An array runs as it is, without a shell: `["flutter", "build", "apk", "--{mode}"]`.
+   * A string runs with `sh -c`, for pipes and `&&`. `{id}` is replaced by an option's value.
+   */
+  run: string | string[];
+  /** Extra environment variables, on top of the dev server's own. */
+  env?: Record<string, string>;
+  options?: BuildOptionConfig[];
+  /**
+   * Files or folders the command produces, relative to its `cwd`. Globs work: "build/*.apk".
+   * Only ones created or changed by a run are offered for download.
+   */
+  outputs?: string | string[];
+}
+
+export interface BuildsConfig {
+  /** Folder commands run in, relative to the config file. Default: the config file's folder. */
+  cwd?: string;
+  commands: BuildCommandConfig[];
+}
+
 export interface UserConfig {
   /** Site name in the top bar and page titles. Default: "Docs". */
   title?: string;
@@ -130,6 +202,11 @@ export interface UserConfig {
   theme?: ThemeConfig;
   /** Extra raw HTML for every page's <head> (favicon, analytics…). */
   head?: string[];
+  /**
+   * `docfold dev` only: build commands you can run from the browser, listed under "Builds".
+   * Never part of `docfold build`. Changes need a restart of `docfold dev`.
+   */
+  builds?: BuildsConfig;
 }
 
 export interface ResolvedHeader {
@@ -167,4 +244,6 @@ export interface ResolvedConfig {
   home: false | ResolvedHome;
   theme: Required<Pick<ThemeConfig, "colors" | "light" | "dark" | "googleFonts">> & { css?: string };
   head: string[];
+  /** `false` when the config declares no build commands. */
+  builds: false | ResolvedBuilds;
 }

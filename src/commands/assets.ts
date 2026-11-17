@@ -1,5 +1,5 @@
 /**
- * The site's own CSS (theme + the user's theme.css) and browser script, for dev and build.
+ * The site's own CSS (theme + the user's theme.css) and browser scripts, for dev and build.
  */
 
 import { relative } from "node:path";
@@ -19,17 +19,23 @@ export const loadStyles = async (config: ResolvedConfig): Promise<string> => {
   return `${theme}\n\n/* ${relative(config.root, config.theme.css)} */\n${await file.text()}`;
 };
 
-/** Bundles the browser script (sidebar, live search, live reload) with Bun's bundler. */
-export const bundleClient = async (): Promise<string> => {
+/** The Builds section's stylesheet (dev only, never written by the build). */
+export const loadBuildStyles = (): Promise<string> => Bun.file(fileURLToPath(new URL("../theme/builds.css", import.meta.url))).text();
+
+/**
+ * Bundles a browser script with Bun's bundler: "app" (sidebar, live search, live reload; every
+ * page, dev and build) or "builds" (the Builds page; dev only).
+ */
+export const bundleClient = async (name: "app" | "builds" = "app"): Promise<string> => {
   const result = await Bun.build({
-    entrypoints: [fileURLToPath(new URL("../client/app.ts", import.meta.url))],
+    entrypoints: [fileURLToPath(new URL(`../client/${name}.ts`, import.meta.url))],
     target: "browser",
     format: "esm",
     minify: true,
   });
   const output = result.outputs[0];
   if (!result.success || !output) {
-    throw new AggregateError(result.logs, "docfold: failed to bundle the client script");
+    throw new AggregateError(result.logs, `docfold: failed to bundle the ${name} script`);
   }
   return output.text();
 };

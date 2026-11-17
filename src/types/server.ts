@@ -1,5 +1,6 @@
 /** The dev server, preview server and build results. */
 
+import type { BuildRunner } from "../builds";
 import type { ContentStore } from "../content";
 
 export interface BuildResult {
@@ -21,12 +22,27 @@ export interface ServerOptions {
   findFreePort?: boolean;
 }
 
-export type DevServerOptions = ServerOptions;
+export interface DevServerOptions extends ServerOptions {
+  /** For tests and tools: the platform the Builds section assumes ("Open" is macOS only) and how it shows a file in Finder. */
+  builds?: { platform?: NodeJS.Platform; reveal?: (path: string) => Promise<void> };
+}
 export type PreviewServerOptions = ServerOptions;
 
+/** What the dev server keeps per WebSocket connection. */
+export interface SocketData {
+  /** Subscribed to live reload. */
+  reload: boolean;
+  /** May follow build logs: a page on this computer, from the dev server's own origin. */
+  builds: boolean;
+  /** The run whose log it follows. */
+  run?: string;
+}
+
 export interface DevServer {
-  server: Bun.Server<undefined>;
+  server: Bun.Server<SocketData>;
   store: ContentStore;
+  /** Runs the config's build commands; undefined when it declares none. */
+  builds?: BuildRunner;
   url: URL;
   stop: () => Promise<void>;
 }

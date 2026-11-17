@@ -75,7 +75,18 @@ const main = async (argv: string[]): Promise<void> => {
               : "  Watching for changes; refresh to see them.",
         ),
       );
+      if (config.builds) {
+        const count = config.builds.commands.length;
+        console.log(dim(`  ${count} build command${count === 1 ? "" : "s"} at ${new URL("builds", dev.url).href} (this computer only)`));
+      }
       console.log(dim("  Press Ctrl+C to stop.\n"));
+      // Builds run in their own process groups, so Ctrl+C in this terminal doesn't reach them: stop them
+      // first. A second Ctrl+C quits at once.
+      const shutdown = (signal: NodeJS.Signals) => {
+        void dev.stop().finally(() => process.exit(signal === "SIGINT" ? 130 : 143));
+      };
+      process.once("SIGINT", shutdown);
+      process.once("SIGTERM", shutdown);
       break;
     }
 

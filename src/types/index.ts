@@ -4,6 +4,7 @@
  *   import type { Doc, Library, ResolvedConfig } from "./types";
  */
 
+export type * from "./builds";
 export type * from "./config";
 export type * from "./content";
 export type * from "./html";

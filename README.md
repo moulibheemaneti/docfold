@@ -19,6 +19,7 @@
 - **No framework.** Pages are plain HTML with a small script on top; they work with JavaScript off. No React, Vue or Vite; the only requirement is [Bun](https://bun.sh).
 - **Static output.** `docfold build` writes a folder you can host anywhere (GitHub Pages, Netlify, S3, nginx). Search runs in the browser.
 - **Your branding.** Logo, name and one "Get Started" button in the header, and an optional landing page with a hero and feature cards (or your own `home.html`).
+- **Your builds, next to your docs.** Optionally, `docfold dev` can run the build commands you list in the config (Flutter, Gradle, Bun, make…), stream their output, and hand you the result. Local only; never part of the static site. See [Builds](#builds-dev-only).
 
 It's built for **collections of records**: decision records (ADRs), RFCs, specs, runbooks, meeting notes, an internal knowledge base. Anything where finding a page by its labels matters more than reading pages in order.
 
@@ -141,6 +142,7 @@ export default defineConfig({
     googleFonts: false,         // use system fonts instead of Lora + Hanken Grotesk
   },
   head: ['<link rel="icon" href="/favicon.svg">'],
+  builds: { commands: [{ id: "web", run: ["bun", "run", "build"], outputs: ["dist"] }] }, // dev only, see Builds
 });
 ```
 
@@ -196,7 +198,7 @@ watch: { liveReload: false },                  // re-read on save; you refresh t
 watch: { debounce: 200 },                      // wait longer for editors that save in several steps
 ```
 
-With watching on, the docs folder, `home.html`, `theme.css` and `publicDir` are all watched.
+With watching on, the docs folder, `home.html`, `theme.css` and `publicDir` are all watched. `docfold.config.ts` itself isn't: restart `docfold dev` after changing it (including `builds`).
 
 ### Theme variables
 
@@ -215,6 +217,94 @@ Override any of these through `theme.colors` / `light` / `dark` (without the `--
 | `font-sans`, `font-serif`, `font-mono` | Body text, headings, code |
 
 The default palette is docfold's own indigo (`primary`) and coral (`secondary`). Headings use Lora and body text uses Hanken Grotesk.
+
+## Builds (dev only)
+
+List your project's build commands in the config and `docfold dev` adds a **Builds** section next to **Docs**. Pick options, press **Run**, watch the output live, and download what the build produced: the file itself when it's one file, a `.zip` when it's several files or a folder. On macOS, **Open** shows it in Finder.
+
+It's a local tool. It exists only under `docfold dev`, only for the computer running it, and only when the config declares at least one command. `docfold build` leaves no trace of it (no pages, links, search entries or scripts), so `docfold preview` and your hosted site don't have it either.
+
+```ts
+builds: {
+  cwd: "..",                    // where commands run, relative to this file (default: this file's folder)
+  commands: [
+    {
+      id: "apk",                // unique; a-z, 0-9, "-", "_". The page is /builds/apk
+      label: "Android APK",
+      group: "Android",         // optional; groups the list
+      description: "Sideloadable APK",
+      run: ["fvm", "flutter", "build", "apk", "--{mode}", "{split}"],
+      options: [
+        { id: "mode", label: "Mode", type: "select", choices: ["debug", "profile", "release"], default: "release" },
+        { id: "split", label: "One APK per ABI", type: "boolean", flag: "--split-per-abi" },
+      ],
+      outputs: ["build/app/outputs/flutter-apk/*.apk"],
+    },
+    {
+      id: "web",
+      label: "Web bundle",
+      cwd: "../web",            // per command, also relative to this file
+      run: ["bun", "run", "build"],
+      env: { NODE_ENV: "production" },
+      outputs: ["dist"],        // a folder is one output, downloaded as a .zip
+    },
+  ],
+},
+```
+
+**Commands**
+
+| Field | |
+|---|---|
+| `id` | Required. Unique, lower-case letters, digits, `-` and `_`. Also the page address, `/builds/<id>`. |
+| `run` | Required. An argument list runs as it is, **without a shell**. A string runs with `sh -c`, for pipes and `&&`. |
+| `label`, `description`, `group` | Shown in the list. Commands with the same `group` are listed together. |
+| `cwd` | Folder to run in, relative to the config file. Default: `builds.cwd`. |
+| `env` | Extra environment variables. Commands also get the dev server's own environment (its `PATH`, so `fvm`, `flutter` or `gradle` work as in your terminal). |
+| `options` | Fields on the command's page (below). |
+| `outputs` | Files or folders the command produces, relative to its `cwd`. Paths or globs (`build/*.apk`, `../web/dist`). |
+
+**Options**
+
+| `type` | Field | `{id}` becomes |
+|---|---|---|
+| `select` | A list of `choices`; `default` must be one of them (default: the first). | The chosen value. |
+| `boolean` | A checkbox; `default: true` ticks it. | `flag` when ticked (`"true"` if it has none), nothing when not. |
+| `text` | Free text; `pattern` (a regular expression the whole value must match), `default`, `placeholder`. | The text. |
+
+Every option takes an optional `label` and `description`.
+
+- `{id}` can be a whole argument (`"{split}"`) or part of one (`"--{mode}"`, `"--flavor={flavor}"`). An argument that is only `{id}` and comes out empty is dropped, so an unticked checkbox leaves nothing behind.
+- In a string `run`, values are never pasted into the shell command. `{id}` becomes a reference to the environment variable `DOCFOLD_OPT_<ID>` that holds the value (`{split}` → `DOCFOLD_OPT_SPLIT`), quoted, and dropped when empty. It works unquoted and inside double quotes; inside single quotes the shell can't fill it in, so that's an error. `${VAR}` is a shell variable, not a placeholder, and `\{word}` is a literal `{word}`.
+- Every option's value is also in the environment as `DOCFOLD_OPT_<ID>`, for scripts.
+- The page shows the exact command your choices produce before you run it.
+
+The config is checked when `docfold dev` (or `build`) starts. It stops with a list of what's wrong: a duplicate or unsafe `id`, a `{placeholder}` that isn't one of the command's options, a `select` default that isn't one of its `choices`, a `pattern` that isn't a valid regular expression. Changes to the config need a restart of `docfold dev`, even with `watch` on.
+
+**Running**
+
+- One run at a time per command; different commands can run at once.
+- Commands start in their own process group with their input closed. **Cancel** stops the whole group: SIGTERM, then SIGKILL a few seconds later for anything still running. Stopping `docfold dev` (Ctrl+C) cancels running builds too.
+- Output streams to the page as it comes. Basic terminal colours are shown; other escape codes are removed.
+- The last 10 runs of each command are kept in memory, each with up to about 2 MB of output (the start is dropped beyond that). Reloading the page, by hand or because a doc was saved during a build, picks the run back up with its output so far. Runs are forgotten when `docfold dev` stops.
+- **Commands can't be interactive.** The page can't answer prompts, and a command's input is closed. If a command goes quiet after something that looks like a question (`Continue? [y/N]`, `Password:`), the page says so: cancel it and make the command non-interactive, often with a flag such as `--yes` or `--no-input`.
+
+**Outputs**
+
+When a run exits with code 0, docfold resolves `outputs` and keeps only the files and folders the run created or changed (by modification time, allowing two seconds for file systems that store whole seconds), so an artifact left over from an older build isn't offered. If nothing new matches, the page says so, including when only older files matched.
+
+- One file: **Download** gives you that file, under its own name.
+- Several files, or a folder (a `dist` folder, a macOS `.app` bundle): a `.zip` named `<id>-<timestamp>.zip`. Each output also has its own **Download**. Zips keep file permissions and symlinks, so apps and executables still work after unzipping.
+- **Open** (macOS only) runs `open -R` on the output, which opens Finder with it selected. It isn't shown on other systems.
+
+**Security**
+
+The dev server can now run commands, so:
+
+- Only commands declared in the config can run. The browser sends a command id and option values, never a command or a path, and each value is checked against its option (a `select` must be one of its `choices`, `text` must match its `pattern` and be a single line). Download and Open take a run id and an output index, and only paths recorded for that finished run are served or opened.
+- The dev server listens on every network interface, so other devices on your network can read your docs. The Builds pages, their downloads and their live output answer only this computer, at `localhost` or `127.0.0.1` (requests addressed to any other name are refused too, which stops DNS-rebinding tricks). Other devices don't see the Builds link.
+- Run, Cancel and Open are POST requests whose `Origin` must be the dev server's own address, and the live-output connection checks it too, so another website open in your browser can't start a build or read its output. Builds pages can't be shown inside another site's frame.
+- A command runs with your user's permissions, like any script you run yourself. Only list commands you'd run in your terminal.
 
 ## CLI
 

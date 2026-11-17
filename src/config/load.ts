@@ -11,6 +11,7 @@ import { dirname, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { DEFAULTS } from "../shared/constants";
 import { warn } from "../shared/log";
+import { resolveBuilds } from "../builds/config";
 import { normalizeBase } from "../shared/urls";
 import { parsePort, resolveHeader, resolveHome, resolveWatch } from "./defaults";
 import type { ResolvedConfig, UserConfig } from "../types";
@@ -80,5 +81,6 @@ export const loadConfig = async (rootOrFile: string, overrides: UserConfig = {})
       css: merged.theme?.css ? resolve(root, merged.theme.css) : undefined,
     },
     head: merged.head ?? [],
+    builds: resolveBuilds(merged.builds, root),
   };
 };

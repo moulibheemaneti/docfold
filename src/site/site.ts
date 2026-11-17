@@ -31,6 +31,7 @@ export const createSite = (config: ResolvedConfig, mode: Site["mode"]): Site => 
     themeColor: primary && /^#[\da-f]{3,8}$/i.test(primary) ? primary : DEFAULT_THEME_COLOR,
     header: config.header,
     home: config.home ? { hero: config.home.hero, features: config.home.features } : false,
+    builds: mode === "dev" && !!config.builds,
   };
 };
 

@@ -8,6 +8,8 @@
  *   base + "files/<path>"        a non-markdown file from the docs folder
  *   base + "assets/<name>"       the site's CSS and JS
  *   base + "search-index.json"   data for in-browser search
+ *   base + "builds[/<id>[/…]]"   dev only: build commands and their runs (never in a build)
+ *   base + "__docfold/events"    dev only: WebSocket for live reload and build logs
  *   base + "<path>"              anything else comes from publicDir (logo, images…)
  *
  * Page URLs have no trailing slash; the build writes them as "docs.html" and
@@ -48,5 +50,7 @@ export const createUrls = (base = "/", options: { home?: boolean } = {}): Urls =
       return root + value.replace(/^\.?\/+/, "");
     },
     searchIndex: `${root}search-index.json`,
+    events: `${root}__docfold/events`,
+    builds: (...segments) => `${root}builds${segments.map((segment) => `/${encodeURIComponent(segment)}`).join("")}`,
   };
 };
