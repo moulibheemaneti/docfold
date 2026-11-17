@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/moulibheemaneti/docfold/compare/docfold-v0.3.0...docfold-v0.4.0) (2026-11-17)
+
+
+### Features
+
+* **dev:** add a local-only Builds section to docfold dev ([#10](https://github.com/moulibheemaneti/docfold/issues/10)) ([1442023](https://github.com/moulibheemaneti/docfold/commit/1442023048f94770c160ce64a54334d0b5ddfcfa))
+
 ## [0.3.0](https://github.com/moulibheemaneti/docfold/compare/docfold-v0.2.0...docfold-v0.3.0) (2026-11-16)
 
 
