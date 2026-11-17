@@ -1,5 +1,5 @@
 /**
- * The page shell: <head>, the header (logo, name, search, action button), sidebar and main area.
+ * The page shell: <head>, the header (logo, name, sections, search, action button), sidebar and main area.
  */
 
 import { html, raw, type SafeHtml } from "../shared/html";
@@ -8,8 +8,19 @@ import { sidebar } from "../sidebar";
 import { image } from "./parts";
 import type { LayoutOptions, PageKind, Site } from "../types";
 
-/** Logo + name + badge on the left, search after it, the one action button on the right. */
-const topbar = (site: Site, page: PageKind): SafeHtml => {
+/** "Docs · Builds" (dev server with builds, on this computer only), marking the section being viewed. */
+const sections = (site: Site, page: PageKind, activeSlug: string | undefined): SafeHtml | "" => {
+  if (!site.builds) return "";
+  const { urls } = site;
+  const docs = page === "search" ? "page" : page === "doc" || page === "other" ? "true" : "";
+  const builds = page === "builds" ? (activeSlug === undefined ? "page" : "true") : "";
+  const link = (href: string, text: string, current: string) =>
+    html`<a class="section-link" href="${href}"${current ? html` aria-current="${current}"` : ""}>${text}</a>`;
+  return html`<nav class="sections" aria-label="Sections">${link(urls.search(), "Docs", docs)}${link(urls.builds(), "Builds", builds)}</nav>`;
+};
+
+/** Logo + name + badge on the left, then the sections nav and search, the one action button on the right. */
+const topbar = (site: Site, page: PageKind, activeSlug: string | undefined): SafeHtml => {
   const { urls, header } = site;
   // Never leave the brand link empty: without a logo the name is required.
   const name = header.name || (header.logo ? "" : site.title);
@@ -20,9 +31,10 @@ const topbar = (site: Site, page: PageKind): SafeHtml => {
     ${
       page === "home"
         ? ""
-        : html`<button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files">${ICONS.menu}</button>`
+        : html`<button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="${`Show ${page === "builds" ? "builds" : "files"}`}" data-nav-label="${page === "builds" ? "builds" : "files"}">${ICONS.menu}</button>`
     }
     <a class="brand" href="${urls.home()}"${page === "home" ? raw(' aria-current="page"') : ""}>${logo}${name ? html`<span class="brand-name">${name}</span>` : ""}${header.tag ? html`<span class="brand-tag">${header.tag}</span>` : ""}</a>
+    ${sections(site, page, activeSlug)}
     ${
       // The documents list has its own, bigger search box.
       page === "search"
@@ -40,9 +52,11 @@ const topbar = (site: Site, page: PageKind): SafeHtml => {
   </header>`;
 };
 
-export const layout = ({ site, library, title, content, page, activeSlug, description = site.description }: LayoutOptions): string => {
+export const layout = (options: LayoutOptions): string => {
+  const { site, library, title, content, page, activeSlug, description = site.description, script } = options;
   const { urls } = site;
   const withSidebar = page !== "home";
+  const nav = options.sidebar ?? sidebar(library, urls, activeSlug, page === "search");
   return html`<!doctype html>
 <html lang="en" data-base="${urls.base}" data-mode="${site.mode}" data-page="${page}"${urls.hasHome ? raw(" data-home") : ""}${site.liveReload ? raw(" data-live-reload") : ""}>
 <head>
@@ -53,15 +67,17 @@ export const layout = ({ site, library, title, content, page, activeSlug, descri
   ${description ? html`<meta name="description" content="${description}">` : ""}
   <title>${title === site.title ? title : `${title} · ${site.title}`}</title>
   <link rel="stylesheet" href="${urls.asset("styles.css")}">
+  ${site.builds ? html`<link rel="stylesheet" href="${urls.asset("builds.css")}">` : ""}
   ${raw(site.head)}
   <script>document.documentElement.classList.add("js")</script>
   <script type="module" src="${urls.asset("app.js")}"></script>
+  ${script ? html`<script type="module" src="${script}"></script>` : ""}
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  ${topbar(site, page)}
+  ${topbar(site, page, activeSlug)}
   <div class="shell${withSidebar ? "" : " is-wide"}">
-    ${withSidebar ? html`${sidebar(library, urls, activeSlug, page === "search")}<div class="backdrop" data-nav-close></div>` : ""}
+    ${withSidebar ? html`${nav}<div class="backdrop" data-nav-close></div>` : ""}
     <main class="main" id="main">${content}</main>
   </div>
 </body>

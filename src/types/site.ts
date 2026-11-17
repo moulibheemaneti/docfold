@@ -21,6 +21,13 @@ export interface Urls {
    */
   link: (target: string) => string;
   searchIndex: string;
+  /** The dev server's WebSocket (live reload and build logs). */
+  events: string;
+  /**
+   * Dev only: the Builds section. `builds()` is the list, `builds("apk")` a command's page, and
+   * further segments address its runs: `builds("apk", "runs", runId, "cancel")`. Each segment is encoded.
+   */
+  builds: (...segments: string[]) => string;
 }
 
 export interface Site {
@@ -39,10 +46,15 @@ export interface Site {
   themeColor: string;
   header: ResolvedHeader;
   home: false | Pick<ResolvedHome, "hero" | "features">;
+  /**
+   * Show the Builds section (the "Docs · Builds" nav and its stylesheet). Only on the dev server,
+   * when the config declares builds, and only for pages sent to this computer.
+   */
+  builds: boolean;
 }
 
 /** Which kind of page is rendering; decides the sidebar, header search and current-page markers. */
-export type PageKind = "home" | "search" | "doc" | "other";
+export type PageKind = "home" | "search" | "doc" | "builds" | "other";
 
 export interface LayoutOptions {
   site: Site;
@@ -53,4 +65,8 @@ export interface LayoutOptions {
   activeSlug?: string;
   /** Meta description; defaults to the site's. */
   description?: string;
+  /** Replaces the documents sidebar (the Builds pages list their commands instead). */
+  sidebar?: SafeHtml;
+  /** Extra module script for this page, e.g. the Builds page's own. */
+  script?: string;
 }

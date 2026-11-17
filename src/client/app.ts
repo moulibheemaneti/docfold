@@ -26,9 +26,10 @@ if (root.dataset.page === "home" && SEARCH_KEYS.some((key) => pageQuery.has(key)
 const navToggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
 
 const setNavOpen = (open: boolean): void => {
+  const what = navToggle?.dataset.navLabel ?? "files";
   root.classList.toggle("nav-open", open);
   navToggle?.setAttribute("aria-expanded", String(open));
-  navToggle?.setAttribute("aria-label", open ? "Hide files" : "Show files");
+  navToggle?.setAttribute("aria-label", open ? `Hide ${what}` : `Show ${what}`);
 };
 
 navToggle?.addEventListener("click", () => setNavOpen(!root.classList.contains("nav-open")));
@@ -334,7 +335,7 @@ document.addEventListener("keydown", (event) => {
 // ---------------------------------------------------------------------------
 
 if ("liveReload" in root.dataset && "WebSocket" in window) {
-  const address = `${location.protocol === "https:" ? "wss" : "ws"}://${location.host}${urls.base}__docfold/events`;
+  const address = `${location.protocol === "https:" ? "wss" : "ws"}://${location.host}${urls.events}`;
   let socket: WebSocket | undefined;
   let retry: ReturnType<typeof setTimeout> | undefined;
 
