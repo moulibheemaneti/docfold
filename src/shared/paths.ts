@@ -19,6 +19,15 @@ export const isFile = async (path: string): Promise<boolean> => {
   }
 };
 
+/** True when `path` exists and is a folder. */
+export const isDirectory = async (path: string): Promise<boolean> => {
+  try {
+    return (await stat(path)).isDirectory();
+  } catch {
+    return false;
+  }
+};
+
 /**
  * Decodes the part of a URL `pathname` after `prefix` (e.g. "/files/my%20img.png" → "my img.png"),
  * or returns null when it is not valid percent-encoding.

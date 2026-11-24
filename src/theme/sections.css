@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Top bar: Docs · <mounted folders>
+
+   Added after styles.css only when the config has mounts, so sites without
+   them get the same stylesheet as before. The rules match the "Docs · Builds"
+   nav in builds.css (keep the two in step), plus scrolling when the links
+   don't fit.
+   ========================================================================== */
+
+.sections {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 6px;
+  /* Several mounted folders on a narrow screen: scroll the links rather than squeeze the search box. */
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.section-link {
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--topbar-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.section-link:hover {
+  color: var(--topbar-fg);
+  background: rgb(255 255 255 / 0.1);
+}
+
+.section-link[aria-current] {
+  color: var(--topbar-fg);
+  background: rgb(255 255 255 / 0.14);
+  box-shadow: inset 0 -2px 0 var(--secondary);
+}
+
+@media (max-width: 560px) {
+  .sections {
+    margin-left: 0;
+  }
+
+  /* Keep the search box usable; the links scroll instead. */
+  .topbar:has(.sections) .header-search {
+    min-width: 7.5rem;
+  }
+
+  .section-link {
+    padding: 5px 7px;
+    font-size: 0.8125rem;
+  }
+
+  /* The nav already leads to the documents; keep room for search. */
+  .topbar:has(.sections) .topbar-action {
+    display: none;
+  }
+
+  /* With the nav, the logo alone stands for the name. */
+  .topbar:has(.sections) .brand:has(.brand-logo) .brand-name,
+  .topbar:has(.sections) .brand-tag {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .topbar:has(.sections) .header-search .input-icon {
+    display: none;
+  }
+
+  .topbar:has(.sections) .header-search input[type="search"] {
+    padding-left: 10px;
+  }
+}

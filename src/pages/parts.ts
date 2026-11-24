@@ -6,7 +6,7 @@
 
 import { escapeRegExp, toQueryString } from "../search";
 import { escapeHtml, html, raw, type SafeHtml } from "../shared/html";
-import type { ImageConfig, SearchParams, Urls } from "../types";
+import type { DocSource, ImageConfig, SearchParams, Urls } from "../types";
 
 const DATE_FORMAT = new Intl.DateTimeFormat("en", { dateStyle: "medium", timeZone: "UTC" });
 
@@ -48,6 +48,10 @@ export const statusBadge = (status: string | undefined, href?: string): SafeHtml
     ? html`<a class="badge" data-status="${status}" href="${href}">${status}</a>`
     : html`<span class="badge" data-status="${status}">${status}</span>`;
 };
+
+/** "API reference · class": on a search result from a mounted folder, where a document shows its status. */
+export const sourceBadge = (source: DocSource): SafeHtml =>
+  html`<span class="badge" data-source="${source.path}">${source.label} · ${source.kind}</span>`;
 
 export const dateLabel = (date: string | undefined): SafeHtml | "" =>
   date ? html`<time datetime="${date}">${formatDate(date)}</time>` : "";

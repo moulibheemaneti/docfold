@@ -2,7 +2,7 @@
 
 import type { SafeHtml } from "../shared/html";
 import type { Library } from "./content";
-import type { ResolvedHeader, ResolvedHome } from "./config";
+import type { ResolvedHeader, ResolvedHome, ResolvedMount } from "./config";
 
 export interface Urls {
   base: string;
@@ -28,6 +28,8 @@ export interface Urls {
    * further segments address its runs: `builds("apk", "runs", runId, "cancel")`. Each segment is encoded.
    */
   builds: (...segments: string[]) => string;
+  /** A mounted folder's address, with its trailing slash: `mount("reference")` → base + "reference/". */
+  mount: (path: string) => string;
 }
 
 export interface Site {
@@ -51,6 +53,8 @@ export interface Site {
    * when the config declares builds, and only for pages sent to this computer.
    */
   builds: boolean;
+  /** Mounted folders, each linked from the header. Missing or empty when the config has none. */
+  mounts?: Pick<ResolvedMount, "path" | "label">[];
 }
 
 /** Which kind of page is rendering; decides the sidebar, header search and current-page markers. */

@@ -50,8 +50,24 @@ export interface Heading {
   text: string;
 }
 
-/** What the browser needs for search: everything except the heavy or server-only fields. */
-export type IndexedDoc = Omit<Doc, "meta" | "body" | "html" | "assets" | "outline">;
+/**
+ * What the browser needs for search: everything except the heavy or server-only fields. Entries
+ * from a mounted folder's search index have the same shape, plus `source`.
+ */
+export type IndexedDoc = Omit<Doc, "meta" | "body" | "html" | "assets" | "outline"> & {
+  /** Only on entries from a mounted folder; markdown documents never have it. */
+  source?: DocSource;
+};
+
+/** The mounted folder a search entry comes from. */
+export interface DocSource {
+  /** The mount's address under the base, e.g. "reference". */
+  path: string;
+  /** The mount's label, e.g. "API reference". */
+  label: string;
+  /** What the entry is, in the index format's words: "class", "method"… */
+  kind: string;
+}
 
 export interface Facet {
   name: string;
