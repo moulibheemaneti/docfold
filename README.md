@@ -19,6 +19,7 @@
 - **No framework.** Pages are plain HTML with a small script on top; they work with JavaScript off. No React, Vue or Vite; the only requirement is [Bun](https://bun.sh).
 - **Static output.** `docfold build` writes a folder you can host anywhere (GitHub Pages, Netlify, S3, nginx). Search runs in the browser.
 - **Your branding.** Logo, name and one "Get Started" button in the header, and an optional landing page with a hero and feature cards (or your own `home.html`).
+- **Generated docs alongside.** Serve a folder of HTML made by another tool, such as `dart doc`, at an address you choose, and find its classes and methods from the same search box as your pages. See [Mounted folders](#mounted-folders).
 - **Your builds, next to your docs.** Optionally, `docfold dev` can run the build commands you list in the config (Flutter, Gradle, Bun, make…), stream their output, and hand you the result. Local only; never part of the static site. See [Builds](#builds-dev-only).
 
 It's built for **collections of records**: decision records (ADRs), RFCs, specs, runbooks, meeting notes, an internal knowledge base. Anything where finding a page by its labels matters more than reading pages in order.
@@ -114,7 +115,7 @@ Every filter lives in the URL, so searches can be bookmarked and shared:
 | `folder` | `?folder=architecture/state` (includes sub-folders) |
 | `sort` | `relevance` (default), `newest`, `oldest`, `title` |
 
-The dev server also answers the same parameters as JSON at `/api/search`.
+The dev server also answers the same parameters as JSON at `/api/search`. With [mounted folders](#mounted-folders), their entries are searched too, and `?folder=<path>` narrows a search to one of them.
 
 ## Configuration
 
@@ -143,10 +144,11 @@ export default defineConfig({
   },
   head: ['<link rel="icon" href="/favicon.svg">'],
   builds: { commands: [{ id: "web", run: ["bun", "run", "build"], outputs: ["dist"] }] }, // dev only, see Builds
+  mounts: [{ dir: "../doc/api", path: "reference", label: "API reference", search: { format: "dartdoc" } }], // see Mounted folders
 });
 ```
 
-Folders starting with `.`, `node_modules`, `outDir` and `publicDir` are never scanned.
+Folders starting with `.`, `node_modules`, `outDir`, `publicDir` and mounted folders are never scanned for markdown.
 
 ### Header
 
@@ -198,7 +200,7 @@ watch: { liveReload: false },                  // re-read on save; you refresh t
 watch: { debounce: 200 },                      // wait longer for editors that save in several steps
 ```
 
-With watching on, the docs folder, `home.html`, `theme.css` and `publicDir` are all watched. `docfold.config.ts` itself isn't: restart `docfold dev` after changing it (including `builds`).
+With watching on, the docs folder, `home.html`, `theme.css`, `publicDir` and mounted folders are all watched. `docfold.config.ts` itself isn't: restart `docfold dev` after changing it (including `builds` and `mounts`).
 
 ### Theme variables
 
@@ -217,6 +219,52 @@ Override any of these through `theme.colors` / `light` / `dark` (without the `--
 | `font-sans`, `font-serif`, `font-mono` | Body text, headings, code |
 
 The default palette is docfold's own indigo (`primary`) and coral (`secondary`). Headings use Lora and body text uses Hanken Grotesk.
+
+## Mounted folders
+
+Some docs are made by other tools. `mounts` serves a folder of their HTML at an address you choose, next to your markdown, and can add the tool's own search index to docfold's search, so one search box finds both your pages and, say, the classes and methods of your API. The first supported format is `dart doc`'s.
+
+`dart doc` writes its HTML to `doc/api` in your package. With the docfold config in `docs/`:
+
+```
+my_package/
+  lib/
+  doc/api/                ← dart doc's output (index.html, index.json, one folder per library)
+  docs/
+    docfold.config.ts
+    guides/…
+```
+
+```ts
+mounts: [
+  {
+    dir: "../doc/api",          // required: the folder to serve, relative to this file
+    path: "reference",          // required: its address, served at <base>reference/
+    label: "API reference",     // required: its header link and the badge on its search results
+    search: {                   // optional: leave out to serve the folder without searching it
+      format: "dartdoc",        // required inside search: the index's format
+      index: "index.json",      // optional, relative to dir (default: the format's own file)
+    },
+  },
+],
+```
+
+Run `dart doc` before `docfold build`, in CI too, so the folder is there to copy.
+
+- **Served as they are.** `dev` serves the folder's files at `<base><path>/` and `build` copies them to `<outDir>/<path>/`. docfold doesn't change them or add its header to them; the header of docfold's own pages gets a link to each mount instead. A folder's address without its trailing slash redirects to the one with it, which serves the folder's `index.html` (as GitHub Pages does), so pages that link to each other relatively keep working. `preview` does the same under a mount's address.
+- **Never served or copied:** hidden names (`.git`, `.DS_Store`), and anything outside `dir`, including through symlinks.
+- **Search.** Each symbol in the index is a search result: `Greeter.greet` as its title, its qualified name (`greeting.Greeter.greet`) under it, the first sentence of its docs as the excerpt, and a badge (`API reference · method`) where documents show their status. Results link to the generated page. `?folder=<path>` narrows a search to one mount: `?folder=reference&q=greet`. Mounted entries are in `search-index.json` and in `/api/search` (with a `source` field: `{ path, label, kind }`), but not in the sidebar, the tag and status filters, or the page addresses under `/docs`.
+- **`dartdoc` format:** `index.json` as `dart doc` writes it. Members that only inherit their docs from what they override are left out, so a widget's `build` doesn't repeat Flutter's own description.
+- **Not generated yet?** A `dir` that doesn't exist is fine. `dev` says so once and serves its files as soon as they exist. It reads the index when it starts; with `watch` on, it also notices the folder appear and re-reads the index whenever the folder changes, then reloads open pages. `build` lists it in its summary and carries on. A missing or unreadable index is a warning: the folder is served but not searched.
+
+The mounts are checked when docfold starts, and every problem is listed at once:
+
+| Field | Rules |
+|---|---|
+| `path` | Slashes at either end are dropped. One or more `/`-separated parts of lower-case letters, digits, `-` and `_`, each starting with a letter or digit. The first part can't be one of docfold's own addresses (`docs`, `files`, `assets`, `api`, `builds`), or the name of a file or folder at the top of `publicDir` (checked when `dev` and `build` start; a mount never wins such a clash). Two mounts can't have the same path or nested ones (`a` and `a/b`). |
+| `dir` | Not the project folder or one of its parents. It can't contain `srcDir`, `outDir` or `publicDir`, or be inside `outDir`. Inside `srcDir` is fine: its markdown isn't read as documents. |
+| `label` | Not empty. |
+| `search.format` | A supported format: `dartdoc`. |
 
 ## Builds (dev only)
 
@@ -316,7 +364,7 @@ docfold preview [dir] [--port 4173]
 
 `dir` is the folder holding `docfold.config.ts` (default: the current folder), or the config file itself. `--src`, `--out`, `--base` and `--port` override the config. Watching is set only in the config (`watch`). When the port is taken, `dev` and `preview` try the next few ports and print the one they use.
 
-`build` only ever empties an `outDir` it created itself (it leaves a `.docfold-build` marker), and refuses an `outDir` that contains the project, the docs or `publicDir`.
+`build` only ever empties an `outDir` it created itself (it leaves a `.docfold-build` marker), and refuses an `outDir` that contains the project, the docs or `publicDir`, or that contains or sits inside a mounted folder.
 
 ## Deploying to GitHub Pages
 
@@ -363,7 +411,7 @@ console.log(result.hits.map((hit) => hit.doc.title));
 - Requires Bun 1.4 or newer.
 - Plain markdown (GitHub-flavoured: tables, task lists, strikethrough, autolinks). No components in markdown (MDX), no versioning or translations.
 - No syntax highlighting in code blocks yet.
-- Search matches exact substrings, so a typo finds nothing. The whole index loads in the browser, which suits up to a few thousand documents.
+- Search matches exact substrings, so a typo finds nothing. The whole index loads in the browser, which suits up to a few thousand documents. Entries from [mounted folders](#mounted-folders) count too, and the documents list shows them when nothing is searched.
 - Every page carries the whole sidebar (so it works without JavaScript), which makes the build grow with the square of the document count: about 90 MB for 500 documents and 270 MB for 1,000. Pages compress well when served gzipped.
 
 ## License
