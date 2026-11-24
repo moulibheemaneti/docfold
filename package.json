@@ -1,6 +1,6 @@
 {
   "name": "@moulibheemaneti/docfold",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Turn a folder of markdown into a searchable docs site. Folders become the sidebar, front matter becomes filters. Runs on Bun.",
   "keywords": [
     "docs",
