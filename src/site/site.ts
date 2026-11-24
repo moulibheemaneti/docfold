@@ -9,6 +9,7 @@ import { toIndexedDoc } from "../content";
 import { homePage, searchPage } from "../pages";
 import { searchDocs } from "../search";
 import { raw } from "../shared/html";
+import { isInside } from "../shared/paths";
 import { createUrls } from "../shared/urls";
 import type { IndexedDoc, Library, ResolvedConfig, SearchParams, Site } from "../types";
 
@@ -32,11 +33,26 @@ export const createSite = (config: ResolvedConfig, mode: Site["mode"]): Site => 
     header: config.header,
     home: config.home ? { hero: config.home.hero, features: config.home.features } : false,
     builds: mode === "dev" && !!config.builds,
+    mounts: config.mounts.map(({ path, label }) => ({ path, label })),
   };
 };
 
-/** Folders that never hold documents even when they sit inside the docs folder: the build output and publicDir. */
-export const ignoredFolders = (config: ResolvedConfig): string[] => [config.outDir, config.publicDir];
+/**
+ * Folders that never hold documents even when they sit inside the docs folder: the build output,
+ * publicDir and mounted folders.
+ */
+export const ignoredFolders = (config: ResolvedConfig): string[] => [
+  config.outDir,
+  config.publicDir,
+  ...config.mounts.map((mount) => mount.dir).filter((dir) => isInside(dir, config.srcDir)),
+];
+
+/**
+ * What search runs over: the markdown documents, then the entries from mounted folders. Without
+ * mounted entries it is the library's own list.
+ */
+export const searchable = (library: Library, mounted: readonly IndexedDoc[] = []): readonly IndexedDoc[] =>
+  mounted.length ? [...library.docs, ...mounted] : library.docs;
 
 /** A full HTML document is served as it is; anything else is a fragment shown inside the site layout. */
 const isFullDocument = (source: string): boolean => /^\s*(?:<!--[\s\S]*?-->\s*)*<(?:!doctype|html)[\s>]/i.test(source);
@@ -51,9 +67,15 @@ export const renderHome = async (config: ResolvedConfig, site: Site, library: Li
   return homePage(site, library);
 };
 
-/** The documents list with `params` applied (the build renders it unfiltered; the browser applies URL filters). */
-export const renderList = (site: Site, library: Library, params: SearchParams): string =>
-  searchPage(site, library, searchDocs(library.docs, params));
+/**
+ * The documents list with `params` applied (the build renders it unfiltered; the browser applies URL
+ * filters). `mounted`: search entries from mounted folders, listed with the documents.
+ */
+export const renderList = (site: Site, library: Library, params: SearchParams, mounted: readonly IndexedDoc[] = []): string =>
+  searchPage(site, library, searchDocs(searchable(library, mounted), params));
 
-/** The documents as the browser downloads them for search (search-index.json). */
-export const searchIndex = (library: Library): IndexedDoc[] => library.docs.map(toIndexedDoc);
+/** The documents as the browser downloads them for search (search-index.json), then any `mounted` entries. */
+export const searchIndex = (library: Library, mounted: readonly IndexedDoc[] = []): IndexedDoc[] => [
+  ...library.docs.map(toIndexedDoc),
+  ...mounted,
+];

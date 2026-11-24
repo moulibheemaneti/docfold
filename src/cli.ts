@@ -7,6 +7,7 @@
  * `dir` is the folder holding docfold.config.ts (default: current folder), or the config file itself.
  */
 
+import { relative } from "node:path";
 import { parseArgs } from "node:util";
 import pkg from "../package.json" with { type: "json" };
 import { build, createDevServer, createPreviewServer, describeOutDir } from "./commands";
@@ -35,6 +36,9 @@ Options
 
 const dim = (text: string) => (process.stdout.isTTY ? `\x1b[2m${text}\x1b[22m` : text);
 const bold = (text: string) => (process.stdout.isTTY ? `\x1b[1m${text}\x1b[22m` : text);
+const count = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+/** A folder as the reader would type it: relative to where docfold runs. */
+const shortPath = (path: string) => relative(process.cwd(), path) || ".";
 
 const main = async (argv: string[]): Promise<void> => {
   const { values, positionals } = parseArgs({
@@ -79,6 +83,9 @@ const main = async (argv: string[]): Promise<void> => {
         const count = config.builds.commands.length;
         console.log(dim(`  ${count} build command${count === 1 ? "" : "s"} at ${new URL("builds", dev.url).href} (this computer only)`));
       }
+      for (const mount of config.mounts) {
+        console.log(dim(`  ${mount.label} at ${new URL(`${mount.path}/`, dev.url).href} (from ${shortPath(mount.dir)})`));
+      }
       console.log(dim("  Press Ctrl+C to stop.\n"));
       // Builds run in their own process groups, so Ctrl+C in this terminal doesn't reach them: stop them
       // first. A second Ctrl+C quits at once.
@@ -98,9 +105,21 @@ const main = async (argv: string[]): Promise<void> => {
       ].filter(Boolean);
       console.log(`\n  Built ${result.pages} pages and copied ${copied.join(" + ")} in ${result.ms} ms`);
       console.log(`  → ${bold(describeOutDir(config))}${config.base !== "/" ? dim(`  (base ${config.base})`) : ""}`);
+      if (config.mounts.length) {
+        const folders = config.mounts.length - (result.missingMounts?.length ?? 0);
+        console.log(
+          `  Mounted ${count(folders, "folder", "folders")}: copied ${count(result.mountFiles ?? 0, "file", "files")}, ` +
+            `indexed ${count(result.mountEntries ?? 0, "search entry", "search entries")}`,
+        );
+      }
       if (result.missingFiles.length) {
         const list = result.missingFiles.map((file) => `    - ${file}`).join("\n");
         console.warn(`\n  Linked from markdown but not copied (missing, a folder, or a hidden path):\n${list}`);
+      }
+      if (result.missingMounts?.length) {
+        const missing = config.mounts.filter((mount) => result.missingMounts?.includes(mount.dir));
+        const list = missing.map((mount) => `    - ${shortPath(mount.dir)} (for ${mount.path}/)`).join("\n");
+        console.warn(`\n  Mounted folders not found, so not copied or searched (generate them before building):\n${list}`);
       }
       console.log(dim(`\n  Check it with: docfold preview${dir === "." ? "" : ` ${dir}`}\n`));
       break;

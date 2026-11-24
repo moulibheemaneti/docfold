@@ -8,7 +8,7 @@ import { toggle } from "../search";
 import { html, raw, type SafeHtml } from "../shared/html";
 import { ICONS } from "../shared/icons";
 import { layout } from "./layout";
-import { dateLabel, highlight, plural, searchUrl, statusBadge } from "./parts";
+import { dateLabel, highlight, plural, searchUrl, sourceBadge, statusBadge } from "./parts";
 import type { Facet, Facets, Library, SearchParams, SearchResult, Site, Urls } from "../types";
 
 const facetChips = (name: "tag" | "status", facets: readonly Facet[], selected: readonly string[]): SafeHtml => {
@@ -95,7 +95,7 @@ const resultCard = (hit: SearchResult["hits"][number], result: SearchResult, url
   return html`<li class="result">
     <div class="result-head">
       <h2 class="result-title"><a href="${doc.url}">${highlight(doc.title, terms)}</a></h2>
-      ${statusBadge(doc.status)}
+      ${doc.source ? sourceBadge(doc.source) : statusBadge(doc.status)}
     </div>
     <div class="result-path">${doc.relPath}</div>
     ${hit.snippet ? html`<p class="result-snippet">${highlight(hit.snippet, terms)}</p>` : ""}

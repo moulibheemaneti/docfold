@@ -7,9 +7,15 @@ import { fileURLToPath } from "node:url";
 import { warn } from "../shared/log";
 import type { ResolvedConfig } from "../types";
 
-/** The built-in theme plus the user's extra stylesheet, if any. */
+const themeFile = (name: string): Promise<string> => Bun.file(fileURLToPath(new URL(`../theme/${name}`, import.meta.url))).text();
+
+/**
+ * The built-in theme plus the user's extra stylesheet, if any. With mounts, the header's section
+ * links (sections.css) come between the two.
+ */
 export const loadStyles = async (config: ResolvedConfig): Promise<string> => {
-  const theme = await Bun.file(fileURLToPath(new URL("../theme/styles.css", import.meta.url))).text();
+  const builtIn = await themeFile("styles.css");
+  const theme = config.mounts.length ? `${builtIn}\n${await themeFile("sections.css")}` : builtIn;
   if (!config.theme.css) return theme;
   const file = Bun.file(config.theme.css);
   if (!(await file.exists())) {
@@ -20,7 +26,7 @@ export const loadStyles = async (config: ResolvedConfig): Promise<string> => {
 };
 
 /** The Builds section's stylesheet (dev only, never written by the build). */
-export const loadBuildStyles = (): Promise<string> => Bun.file(fileURLToPath(new URL("../theme/builds.css", import.meta.url))).text();
+export const loadBuildStyles = (): Promise<string> => themeFile("builds.css");
 
 /**
  * Bundles a browser script with Bun's bundler: "app" (sidebar, live search, live reload; every

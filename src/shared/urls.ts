@@ -10,6 +10,7 @@
  *   base + "search-index.json"   data for in-browser search
  *   base + "builds[/<id>[/…]]"   dev only: build commands and their runs (never in a build)
  *   base + "__docfold/events"    dev only: WebSocket for live reload and build logs
+ *   base + "<mount>/…"           a folder from the config's `mounts` (at its `path`), served as it is
  *   base + "<path>"              anything else comes from publicDir (logo, images…)
  *
  * Page URLs have no trailing slash; the build writes them as "docs.html" and
@@ -52,5 +53,6 @@ export const createUrls = (base = "/", options: { home?: boolean } = {}): Urls =
     searchIndex: `${root}search-index.json`,
     events: `${root}__docfold/events`,
     builds: (...segments) => `${root}builds${segments.map((segment) => `/${encodeURIComponent(segment)}`).join("")}`,
+    mount: (path) => `${root}${encodePath(path)}/`,
   };
 };

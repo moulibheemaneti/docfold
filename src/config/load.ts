@@ -12,6 +12,7 @@ import { pathToFileURL } from "node:url";
 import { DEFAULTS } from "../shared/constants";
 import { warn } from "../shared/log";
 import { resolveBuilds } from "../builds/config";
+import { resolveMounts } from "../mounts/config";
 import { normalizeBase } from "../shared/urls";
 import { parsePort, resolveHeader, resolveHome, resolveWatch } from "./defaults";
 import type { ResolvedConfig, UserConfig } from "../types";
@@ -60,14 +61,18 @@ export const loadConfig = async (rootOrFile: string, overrides: UserConfig = {})
     warn(`home.file not found: ${home.file} (using the generated home page)`);
   }
 
+  const srcDir = resolve(root, merged.srcDir ?? DEFAULTS.srcDir);
+  const outDir = resolve(root, merged.outDir ?? DEFAULTS.outDir);
+  const publicDir = resolve(root, merged.publicDir ?? DEFAULTS.publicDir);
+
   return {
     root,
     configFile,
     title,
     description: merged.description?.trim() || undefined,
-    srcDir: resolve(root, merged.srcDir ?? DEFAULTS.srcDir),
-    outDir: resolve(root, merged.outDir ?? DEFAULTS.outDir),
-    publicDir: resolve(root, merged.publicDir ?? DEFAULTS.publicDir),
+    srcDir,
+    outDir,
+    publicDir,
     base: normalizeBase(merged.base ?? DEFAULTS.base),
     port: parsePort(merged.port ?? DEFAULTS.port),
     watch: resolveWatch(merged.watch),
@@ -82,5 +87,6 @@ export const loadConfig = async (rootOrFile: string, overrides: UserConfig = {})
     },
     head: merged.head ?? [],
     builds: resolveBuilds(merged.builds, root),
+    mounts: resolveMounts(merged.mounts, root, { srcDir, outDir, publicDir }),
   };
 };

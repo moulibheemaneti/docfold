@@ -1,0 +1,8 @@
+[
+  { "name": "greeting", "qualifiedName": "greeting", "href": "greeting/", "kind": 9, "packageRank": 0, "desc": "" },
+  { "name": "Greeter", "qualifiedName": "greeting.Greeter", "href": "greeting/Greeter-class.html", "kind": 3, "packageRank": 0, "desc": "Says hello to people.", "enclosedBy": { "name": "greeting", "kind": 9, "href": "greeting/" } },
+  { "name": "greet", "qualifiedName": "greeting.Greeter.greet", "href": "greeting/Greeter/greet.html", "kind": 10, "overriddenDepth": 0, "packageRank": 0, "desc": "Returns a greeting for name.", "enclosedBy": { "name": "Greeter", "kind": 3, "href": "greeting/Greeter-class.html" } },
+  { "name": "toString", "qualifiedName": "greeting.Greeter.toString", "href": "greeting/Greeter/toString.html", "kind": 10, "overriddenDepth": 1, "packageRank": 0, "desc": "A string representation of this object.", "enclosedBy": { "name": "Greeter", "kind": 3, "href": "greeting/Greeter-class.html" } },
+  { "name": "Mood", "qualifiedName": "greeting.Mood", "href": "greeting/Mood.html", "kind": 5, "packageRank": 0, "desc": "How the greeting sounds.", "enclosedBy": { "name": "greeting", "kind": 9, "href": "greeting/" } },
+  { "name": "mystery", "qualifiedName": "greeting.mystery", "href": "greeting/mystery.html", "kind": 99, "packageRank": 0, "desc": "", "enclosedBy": { "name": "greeting", "kind": 9, "href": "greeting/" } }
+]

@@ -8,15 +8,20 @@ import { sidebar } from "../sidebar";
 import { image } from "./parts";
 import type { LayoutOptions, PageKind, Site } from "../types";
 
-/** "Docs · Builds" (dev server with builds, on this computer only), marking the section being viewed. */
+/**
+ * "Docs · <mounted folders> · Builds", marking the section being viewed. Mounted folders come from the
+ * config; Builds shows on the dev server with builds, on this computer only. Left out when there's neither.
+ */
 const sections = (site: Site, page: PageKind, activeSlug: string | undefined): SafeHtml | "" => {
-  if (!site.builds) return "";
+  const mounts = site.mounts ?? [];
+  if (!site.builds && !mounts.length) return "";
   const { urls } = site;
   const docs = page === "search" ? "page" : page === "doc" || page === "other" ? "true" : "";
   const builds = page === "builds" ? (activeSlug === undefined ? "page" : "true") : "";
   const link = (href: string, text: string, current: string) =>
     html`<a class="section-link" href="${href}"${current ? html` aria-current="${current}"` : ""}>${text}</a>`;
-  return html`<nav class="sections" aria-label="Sections">${link(urls.search(), "Docs", docs)}${link(urls.builds(), "Builds", builds)}</nav>`;
+  // Mounted pages are served as they are, never inside this layout, so their links are never current.
+  return html`<nav class="sections" aria-label="Sections">${link(urls.search(), "Docs", docs)}${mounts.map((mount) => link(urls.mount(mount.path), mount.label, ""))}${site.builds ? link(urls.builds(), "Builds", builds) : ""}</nav>`;
 };
 
 /** Logo + name + badge on the left, then the sections nav and search, the one action button on the right. */

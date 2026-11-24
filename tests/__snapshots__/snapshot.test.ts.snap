@@ -1,0 +1,3141 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`site without mounts: plain build output: result 1`] = `
+{
+  "files": 1,
+  "missingFiles": [],
+  "ms": 0,
+  "outDir": "<out>",
+  "pages": 3,
+  "publicFiles": 0,
+}
+`;
+
+exports[`site without mounts: plain build output: files 1`] = `
+{
+  ".docfold-build": 
+"{
+  "generator": "docfold",
+  "base": "/sub/",
+  "builtAt": "<time>"
+}
+"
+,
+  ".nojekyll": "",
+  "404.html": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="static" data-page="other">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Not found · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Pick a file from the sidebar or <a href="/sub/">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+  "assets/app.js": "(browser bundle: listed, not recorded)",
+  "assets/styles.css": "sha256:ed5759100a1398ce86c21b90d1456ec4bb2cf62e0f04d15e5c75d78489e60e9b",
+  "docs/guide/intro.html": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="static" data-page="doc">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Intro · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide" data-current>
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md" aria-current="page"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><article class="doc">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/sub/">Docs</a><span aria-hidden="true">/</span><a href="/sub/?folder=guide" title="Search in guide/">guide</a><span aria-hidden="true">/</span><span>intro.md</span>
+  </nav>
+    <header class="doc-header">
+      <h1>Intro</h1>
+      
+      <div class="meta">
+        <a class="badge" data-status="accepted" href="/sub/?status=accepted">accepted</a>
+        
+        <a class="tag" href="/sub/?tag=setup">setup</a>
+      </div>
+    </header>
+    
+    <div class="prose"><p>See <a href="/sub/docs/guide/next">next</a> and <img src="/sub/files/guide/img/a.png" alt="diagram" />.</p>
+</div>
+    <footer class="doc-footer">Source: <code>content/guide/intro.md</code></footer>
+  </article></main>
+  </div>
+</body>
+</html>"
+,
+  "docs/guide/next.html": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="static" data-page="doc">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Next steps · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide" data-current>
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md" aria-current="page"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><article class="doc">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/sub/">Docs</a><span aria-hidden="true">/</span><a href="/sub/?folder=guide" title="Search in guide/">guide</a><span aria-hidden="true">/</span><span>next.md</span>
+  </nav>
+    <header class="doc-header">
+      <h1>Next steps</h1>
+      
+      <div class="meta">
+        
+        
+        
+      </div>
+    </header>
+    
+    <div class="prose"><p>Body text.</p>
+</div>
+    <footer class="doc-footer">Source: <code>content/guide/next.md</code></footer>
+  </article></main>
+  </div>
+</body>
+</html>"
+,
+  "files/guide/img/a.png": "PNG",
+  "index.html": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="static" data-page="search">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/" aria-current="page">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page">
+    <header class="page-header">
+      <h1>Documents</h1>
+      <p>Everything in <code>content/</code>. Search the text or narrow it down by tag and status.</p>
+    </header>
+    <div id="search-root"><form id="search-form" class="filters" action="/sub/" method="get" role="search">
+    <div class="search-row">
+      <label class="input-wrap search-main">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Search documents</span>
+        <input type="search" name="q" value="" placeholder="Search titles, tags, headings and content…" autocomplete="off" data-shortcut>
+        <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+      </label>
+      <label class="select-wrap">
+        <span class="sr-only">Sort by</span>
+        <select name="sort"><option value="relevance" selected>Best match</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option></select>
+      </label>
+    </div>
+
+    
+
+    <fieldset class="facet">
+            <legend>Tags</legend>
+            <div class="chips"><label class="chip">
+      <input type="checkbox" name="tag" value="setup">
+      <span>#setup</span><span class="chip-count">1</span>
+    </label></div>
+            <div class="match-mode" role="radiogroup" aria-label="Tag matching">
+              <span>Match</span>
+              <label><input type="radio" name="match" value="all" checked> all selected tags</label>
+              <label><input type="radio" name="match" value="any"> any selected tag</label>
+            </div>
+          </fieldset>
+
+    <fieldset class="facet">
+            <legend>Status</legend>
+            <div class="chips"><label class="chip" data-status="accepted">
+      <input type="checkbox" name="status" value="accepted">
+      <span>accepted</span><span class="chip-count">1</span>
+    </label></div>
+          </fieldset>
+
+    <div class="filter-actions">
+      <button type="submit" class="button no-js-only">Apply filters</button>
+      <a class="button-link" href="/sub/">Clear all</a>
+    </div>
+  </form>
+    <section id="results" class="results" aria-live="polite"><p class="results-summary"><strong>2 documents</strong></p><ol class="result-list" role="list"><li class="result">
+    <div class="result-head">
+      <h2 class="result-title"><a href="/sub/docs/guide/intro">Intro</a></h2>
+      <span class="badge" data-status="accepted">accepted</span>
+    </div>
+    <div class="result-path">guide/intro.md</div>
+    <p class="result-snippet">See next and .</p>
+    <div class="meta">
+      
+      <a class="tag" data-tag="setup" href="/sub/?tag=setup">setup</a>
+    </div>
+  </li><li class="result">
+    <div class="result-head">
+      <h2 class="result-title"><a href="/sub/docs/guide/next">Next steps</a></h2>
+      
+    </div>
+    <div class="result-path">guide/next.md</div>
+    <p class="result-snippet">Body text.</p>
+    <div class="meta">
+      
+      
+    </div>
+  </li></ol></section></div>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+  "search-index.json": "[{"relPath":"guide/intro.md","slug":"guide/intro","url":"/sub/docs/guide/intro","fileName":"intro.md","folder":"guide","title":"Intro","status":"accepted","tags":["setup"],"text":"See next and .","headings":[]},{"relPath":"guide/next.md","slug":"guide/next","url":"/sub/docs/guide/next","fileName":"next.md","folder":"guide","title":"Next steps","tags":[],"text":"Body text.","headings":[]}]",
+}
+`;
+
+exports[`site without mounts: plain docfold build prints 1`] = `
+"docfold <version>  <root>/docfold.config.ts
+
+  Built 3 pages and copied 1 linked file in <n> ms
+  → <out>  (base /sub/)
+
+  Check it with: docfold preview <root>
+
+"
+`;
+
+exports[`site without mounts: plain dev server answers 1`] = `
+{
+  "/": {
+    "body": "",
+    "location": "/sub/",
+    "status": 302,
+    "type": null,
+  },
+  "/sub/": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="search">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/" aria-current="page">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page">
+    <header class="page-header">
+      <h1>Documents</h1>
+      <p>Everything in <code>content/</code>. Search the text or narrow it down by tag and status.</p>
+    </header>
+    <div id="search-root"><form id="search-form" class="filters" action="/sub/" method="get" role="search">
+    <div class="search-row">
+      <label class="input-wrap search-main">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Search documents</span>
+        <input type="search" name="q" value="" placeholder="Search titles, tags, headings and content…" autocomplete="off" data-shortcut>
+        <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+      </label>
+      <label class="select-wrap">
+        <span class="sr-only">Sort by</span>
+        <select name="sort"><option value="relevance" selected>Best match</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option></select>
+      </label>
+    </div>
+
+    
+
+    <fieldset class="facet">
+            <legend>Tags</legend>
+            <div class="chips"><label class="chip">
+      <input type="checkbox" name="tag" value="setup">
+      <span>#setup</span><span class="chip-count">1</span>
+    </label></div>
+            <div class="match-mode" role="radiogroup" aria-label="Tag matching">
+              <span>Match</span>
+              <label><input type="radio" name="match" value="all" checked> all selected tags</label>
+              <label><input type="radio" name="match" value="any"> any selected tag</label>
+            </div>
+          </fieldset>
+
+    <fieldset class="facet">
+            <legend>Status</legend>
+            <div class="chips"><label class="chip" data-status="accepted">
+      <input type="checkbox" name="status" value="accepted">
+      <span>accepted</span><span class="chip-count">1</span>
+    </label></div>
+          </fieldset>
+
+    <div class="filter-actions">
+      <button type="submit" class="button no-js-only">Apply filters</button>
+      <a class="button-link" href="/sub/">Clear all</a>
+    </div>
+  </form>
+    <section id="results" class="results" aria-live="polite"><p class="results-summary"><strong>2 documents</strong></p><ol class="result-list" role="list"><li class="result">
+    <div class="result-head">
+      <h2 class="result-title"><a href="/sub/docs/guide/intro">Intro</a></h2>
+      <span class="badge" data-status="accepted">accepted</span>
+    </div>
+    <div class="result-path">guide/intro.md</div>
+    <p class="result-snippet">See next and .</p>
+    <div class="meta">
+      
+      <a class="tag" data-tag="setup" href="/sub/?tag=setup">setup</a>
+    </div>
+  </li><li class="result">
+    <div class="result-head">
+      <h2 class="result-title"><a href="/sub/docs/guide/next">Next steps</a></h2>
+      
+    </div>
+    <div class="result-path">guide/next.md</div>
+    <p class="result-snippet">Body text.</p>
+    <div class="meta">
+      
+      
+    </div>
+  </li></ol></section></div>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 200,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/.secret": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Not found · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/.secret</code>. Pick a file from the sidebar or <a href="/sub/">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/?tag=setup": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="search">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/" aria-current="page">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page">
+    <header class="page-header">
+      <h1>Documents</h1>
+      <p>Everything in <code>content/</code>. Search the text or narrow it down by tag and status.</p>
+    </header>
+    <div id="search-root"><form id="search-form" class="filters" action="/sub/" method="get" role="search">
+    <div class="search-row">
+      <label class="input-wrap search-main">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Search documents</span>
+        <input type="search" name="q" value="" placeholder="Search titles, tags, headings and content…" autocomplete="off" data-shortcut>
+        <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+      </label>
+      <label class="select-wrap">
+        <span class="sr-only">Sort by</span>
+        <select name="sort"><option value="relevance" selected>Best match</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option></select>
+      </label>
+    </div>
+
+    
+
+    <fieldset class="facet">
+            <legend>Tags</legend>
+            <div class="chips"><label class="chip">
+      <input type="checkbox" name="tag" value="setup" checked>
+      <span>#setup</span><span class="chip-count">1</span>
+    </label></div>
+            <div class="match-mode" role="radiogroup" aria-label="Tag matching">
+              <span>Match</span>
+              <label><input type="radio" name="match" value="all" checked> all selected tags</label>
+              <label><input type="radio" name="match" value="any"> any selected tag</label>
+            </div>
+          </fieldset>
+
+    <fieldset class="facet">
+            <legend>Status</legend>
+            <div class="chips"><label class="chip" data-status="accepted">
+      <input type="checkbox" name="status" value="accepted">
+      <span>accepted</span><span class="chip-count">1</span>
+    </label></div>
+          </fieldset>
+
+    <div class="filter-actions">
+      <button type="submit" class="button no-js-only">Apply filters</button>
+      <a class="button-link" href="/sub/">Clear all</a>
+    </div>
+  </form>
+    <section id="results" class="results" aria-live="polite"><p class="results-summary"><strong>1 result</strong> of 2 documents</p><ol class="result-list" role="list"><li class="result">
+    <div class="result-head">
+      <h2 class="result-title"><a href="/sub/docs/guide/intro">Intro</a></h2>
+      <span class="badge" data-status="accepted">accepted</span>
+    </div>
+    <div class="result-path">guide/intro.md</div>
+    <p class="result-snippet">See next and .</p>
+    <div class="meta">
+      
+      <a class="tag is-active" data-tag="setup" href="/sub/">setup</a>
+    </div>
+  </li></ol></section></div>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 200,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/api/search?folder=guide": {
+    "body": "{"params":{"q":"","tags":[],"statuses":[],"folder":"guide","match":"all","sort":"relevance"},"total":2,"count":2,"results":[{"title":"Intro","path":"guide/intro.md","url":"/sub/docs/guide/intro","folder":"guide","status":"accepted","date":null,"tags":["setup"],"description":null,"score":0,"snippet":"See next and ."},{"title":"Next steps","path":"guide/next.md","url":"/sub/docs/guide/next","folder":"guide","status":null,"date":null,"tags":[],"description":null,"score":0,"snippet":"Body text."}],"facets":{"tags":[{"name":"setup","count":1}],"statuses":[{"name":"accepted","count":1}]}}",
+    "location": null,
+    "status": 200,
+    "type": "application/json;charset=utf-8",
+  },
+  "/sub/api/search?q=a&sort=title": {
+    "body": "{"params":{"q":"a","tags":[],"statuses":[],"folder":"","match":"all","sort":"title"},"total":2,"count":1,"results":[{"title":"Intro","path":"guide/intro.md","url":"/sub/docs/guide/intro","folder":"guide","status":"accepted","date":null,"tags":["setup"],"description":null,"score":1.25,"snippet":"See next and ."}],"facets":{"tags":[{"name":"setup","count":1}],"statuses":[{"name":"accepted","count":1}]}}",
+    "location": null,
+    "status": 200,
+    "type": "application/json;charset=utf-8",
+  },
+  "/sub/api/search?q=next": {
+    "body": "{"params":{"q":"next","tags":[],"statuses":[],"folder":"","match":"all","sort":"relevance"},"total":2,"count":2,"results":[{"title":"Next steps","path":"guide/next.md","url":"/sub/docs/guide/next","folder":"guide","status":null,"date":null,"tags":[],"description":null,"score":14,"snippet":"Body text."},{"title":"Intro","path":"guide/intro.md","url":"/sub/docs/guide/intro","folder":"guide","status":"accepted","date":null,"tags":["setup"],"description":null,"score":1.25,"snippet":"See next and ."}],"facets":{"tags":[{"name":"setup","count":1}],"statuses":[{"name":"accepted","count":1}]}}",
+    "location": null,
+    "status": 200,
+    "type": "application/json;charset=utf-8",
+  },
+  "/sub/docs": {
+    "body": "",
+    "location": "/sub/",
+    "status": 302,
+    "type": null,
+  },
+  "/sub/docs/": {
+    "body": "",
+    "location": "/sub/docs",
+    "status": 301,
+    "type": null,
+  },
+  "/sub/docs/Guide/Intro.md": {
+    "body": "",
+    "location": "/sub/docs/guide/intro",
+    "status": 301,
+    "type": null,
+  },
+  "/sub/docs/a": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Not found · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/docs/a</code>. Pick a file from the sidebar or <a href="/sub/">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/docs/guide/c": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Not found · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/docs/guide/c</code>. Pick a file from the sidebar or <a href="/sub/">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/docs/guide/intro": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="doc">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Intro · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide" data-current>
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md" aria-current="page"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><article class="doc">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/sub/">Docs</a><span aria-hidden="true">/</span><a href="/sub/?folder=guide" title="Search in guide/">guide</a><span aria-hidden="true">/</span><span>intro.md</span>
+  </nav>
+    <header class="doc-header">
+      <h1>Intro</h1>
+      
+      <div class="meta">
+        <a class="badge" data-status="accepted" href="/sub/?status=accepted">accepted</a>
+        
+        <a class="tag" href="/sub/?tag=setup">setup</a>
+      </div>
+    </header>
+    
+    <div class="prose"><p>See <a href="/sub/docs/guide/next">next</a> and <img src="/sub/files/guide/img/a.png" alt="diagram" />.</p>
+</div>
+    <footer class="doc-footer">Source: <code>content/guide/intro.md</code></footer>
+  </article></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 200,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/docs/missing": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Not found · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/docs/missing</code>. Pick a file from the sidebar or <a href="/sub/">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/files/guide/img/a.png": {
+    "body": "PNG",
+    "location": null,
+    "status": 200,
+    "type": "image/png",
+  },
+  "/sub/files/unlinked.txt": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Not found · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/files/unlinked.txt</code>. Pick a file from the sidebar or <a href="/sub/">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/logo.svg": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Not found · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/logo.svg</code>. Pick a file from the sidebar or <a href="/sub/">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/nope/": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Not found · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/nope/</code>. Pick a file from the sidebar or <a href="/sub/">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/reference": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Not found · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/reference</code>. Pick a file from the sidebar or <a href="/sub/">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/reference/": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123456">
+  <meta name="generator" content="docfold">
+  
+  <title>Not found · Test Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <style>:root{--primary:#123456}@media (prefers-color-scheme: dark){:root{--bg:#000}}</style>
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><span class="brand-name">Test Docs</span><span class="brand-tag">Docs</span></a>
+    
+    <form class="header-search" action="/sub/" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/">Get Started</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/">All documents <span class="tree-count">2</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">2</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="intro intro.md"><a href="/sub/docs/guide/intro" title="guide/intro.md"><span class="tree-label">Intro</span></a></li><li class="tree-file" data-search="next steps next.md"><a href="/sub/docs/guide/next" title="guide/next.md"><span class="tree-label">Next steps</span></a></li></ul>
+    </details>
+  </li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/reference/</code>. Pick a file from the sidebar or <a href="/sub/">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/search-index.json": {
+    "body": "[{"relPath":"guide/intro.md","slug":"guide/intro","url":"/sub/docs/guide/intro","fileName":"intro.md","folder":"guide","title":"Intro","status":"accepted","tags":["setup"],"text":"See next and .","headings":[]},{"relPath":"guide/next.md","slug":"guide/next","url":"/sub/docs/guide/next","fileName":"next.md","folder":"guide","title":"Next steps","tags":[],"text":"Body text.","headings":[]}]",
+    "location": null,
+    "status": 200,
+    "type": "application/json;charset=utf-8",
+  },
+}
+`;
+
+exports[`site without mounts: plain docfold dev prints 1`] = `
+"docfold <version>  <root>/docfold.config.ts
+
+  Local:  http://localhost:<port>/sub/
+  2 markdown files from <root>/content
+  Not watching for changes (set watch: true in docfold.config.ts to reload on save).
+  Press Ctrl+C to stop.
+
+"
+`;
+
+exports[`site without mounts: plain preview server answers 1`] = `
+{
+  "/": {
+    "body": "",
+    "location": "/sub/",
+    "status": 302,
+    "type": null,
+  },
+  "/sub/": {
+    "body": "(the built file index.html)",
+    "location": null,
+    "status": 200,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/docs": {
+    "body": "(the built file 404.html)",
+    "location": null,
+    "status": 404,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/docs/a": {
+    "body": "(the built file 404.html)",
+    "location": null,
+    "status": 404,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/docs/guide": {
+    "body": "(the built file 404.html)",
+    "location": null,
+    "status": 404,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/docs/guide/c": {
+    "body": "(the built file 404.html)",
+    "location": null,
+    "status": 404,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/docs/guide/intro": {
+    "body": "(the built file docs/guide/intro.html)",
+    "location": null,
+    "status": 200,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/docs/guide/intro/": {
+    "body": "",
+    "location": "/sub/docs/guide/intro",
+    "status": 301,
+    "type": null,
+  },
+  "/sub/logo.svg": {
+    "body": "(the built file 404.html)",
+    "location": null,
+    "status": 404,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/nope/": {
+    "body": "(the built file 404.html)",
+    "location": null,
+    "status": 404,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/reference": {
+    "body": "(the built file 404.html)",
+    "location": null,
+    "status": 404,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/search-index.json": {
+    "body": "(the built file search-index.json)",
+    "location": null,
+    "status": 200,
+    "type": "application/json;charset=utf-8",
+  },
+}
+`;
+
+exports[`site without mounts: home build output: result 1`] = `
+{
+  "files": 0,
+  "missingFiles": [],
+  "ms": 0,
+  "outDir": "<out>",
+  "pages": 5,
+  "publicFiles": 1,
+}
+`;
+
+exports[`site without mounts: home build output: files 1`] = `
+{
+  ".docfold-build": 
+"{
+  "generator": "docfold",
+  "base": "/sub/",
+  "builtAt": "<time>"
+}
+"
+,
+  ".nojekyll": "",
+  "404.html": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="static" data-page="other" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Not found · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Pick a file from the sidebar or <a href="/sub/docs">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+  "assets/app.js": "(browser bundle: listed, not recorded)",
+  "assets/styles.css": "sha256:ed5759100a1398ce86c21b90d1456ec4bb2cf62e0f04d15e5c75d78489e60e9b",
+  "docs.html": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="static" data-page="search" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Documents · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs" aria-current="page">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page">
+    <header class="page-header">
+      <h1>Documents</h1>
+      <p>Everything in <code>content/</code>. Search the text or narrow it down by tag and status.</p>
+    </header>
+    <div id="search-root"><form id="search-form" class="filters" action="/sub/docs" method="get" role="search">
+    <div class="search-row">
+      <label class="input-wrap search-main">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Search documents</span>
+        <input type="search" name="q" value="" placeholder="Search titles, tags, headings and content…" autocomplete="off" data-shortcut>
+        <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+      </label>
+      <label class="select-wrap">
+        <span class="sr-only">Sort by</span>
+        <select name="sort"><option value="relevance" selected>Best match</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option></select>
+      </label>
+    </div>
+
+    
+
+    <fieldset class="facet">
+            <legend>Tags</legend>
+            <div class="chips"><label class="chip">
+      <input type="checkbox" name="tag" value="setup">
+      <span>#setup</span><span class="chip-count">1</span>
+    </label></div>
+            <div class="match-mode" role="radiogroup" aria-label="Tag matching">
+              <span>Match</span>
+              <label><input type="radio" name="match" value="all" checked> all selected tags</label>
+              <label><input type="radio" name="match" value="any"> any selected tag</label>
+            </div>
+          </fieldset>
+
+    <fieldset class="facet">
+            <legend>Status</legend>
+            <div class="chips"><label class="chip" data-status="draft">
+      <input type="checkbox" name="status" value="draft">
+      <span>draft</span><span class="chip-count">1</span>
+    </label></div>
+          </fieldset>
+
+    <div class="filter-actions">
+      <button type="submit" class="button no-js-only">Apply filters</button>
+      <a class="button-link" href="/sub/docs">Clear all</a>
+    </div>
+  </form>
+    <section id="results" class="results" aria-live="polite"><p class="results-summary"><strong>3 documents</strong></p><ol class="result-list" role="list"><li class="result">
+    <div class="result-head">
+      <h2 class="result-title"><a href="/sub/docs/guide/c">Gamma</a></h2>
+      <span class="badge" data-status="draft">draft</span>
+    </div>
+    <div class="result-path">guide/c.md</div>
+    <p class="result-snippet">One Text with a link. Two More.</p>
+    <div class="meta">
+      <time datetime="2024-05-01">May 1, 2024</time>
+      
+    </div>
+  </li><li class="result">
+    <div class="result-head">
+      <h2 class="result-title"><a href="/sub/docs/a">Alpha</a></h2>
+      
+    </div>
+    <div class="result-path">a.md</div>
+    <p class="result-snippet">A.</p>
+    <div class="meta">
+      
+      <a class="tag" data-tag="setup" href="/sub/docs?tag=setup">setup</a>
+    </div>
+  </li><li class="result">
+    <div class="result-head">
+      <h2 class="result-title"><a href="/sub/docs/b">Beta</a></h2>
+      
+    </div>
+    <div class="result-path">b.md</div>
+    
+    <div class="meta">
+      
+      
+    </div>
+  </li></ol></section></div>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+  "docs/a.html": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="static" data-page="doc" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Alpha · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md" aria-current="page"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><article class="doc">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/sub/docs">Docs</a><span aria-hidden="true">/</span><span>a.md</span>
+  </nav>
+    <header class="doc-header">
+      <h1>Alpha</h1>
+      
+      <div class="meta">
+        
+        
+        <a class="tag" href="/sub/docs?tag=setup">setup</a>
+      </div>
+    </header>
+    
+    <div class="prose"><p>A.</p>
+</div>
+    <footer class="doc-footer">Source: <code>content/a.md</code></footer>
+  </article></main>
+  </div>
+</body>
+</html>"
+,
+  "docs/b.html": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="static" data-page="doc" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Beta · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md" aria-current="page"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><article class="doc">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/sub/docs">Docs</a><span aria-hidden="true">/</span><span>b.md</span>
+  </nav>
+    <header class="doc-header">
+      <h1>Beta</h1>
+      
+      <div class="meta">
+        
+        
+        
+      </div>
+    </header>
+    
+    <div class="prose"></div>
+    <footer class="doc-footer">Source: <code>content/b.md</code></footer>
+  </article></main>
+  </div>
+</body>
+</html>"
+,
+  "docs/guide/c.html": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="static" data-page="doc" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Gamma · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide" data-current>
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md" aria-current="page"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><article class="doc has-outline">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/sub/docs">Docs</a><span aria-hidden="true">/</span><a href="/sub/docs?folder=guide" title="Search in guide/">guide</a><span aria-hidden="true">/</span><span>c.md</span>
+  </nav>
+    <header class="doc-header">
+      <h1>Gamma</h1>
+      
+      <div class="meta">
+        <a class="badge" data-status="draft" href="/sub/docs?status=draft">draft</a>
+        <time datetime="2024-05-01">May 1, 2024</time>
+        
+      </div>
+    </header>
+    <nav class="outline" aria-label="On this page">
+      <p class="outline-title" aria-hidden="true">On this page</p>
+      <button class="outline-toggle" type="button" aria-expanded="false">On this page</button>
+      <ul class="outline-list" role="list"><li><a href="#one">One</a></li><li><a href="#two">Two</a></li></ul>
+    </nav>
+    <div class="prose"><h2 id="one"><a href="#one">One</a></h2>
+<p>Text with <a href="/sub/docs/a">a link</a>.</p>
+<h2 id="two"><a href="#two">Two</a></h2>
+<p>More.</p>
+</div>
+    <footer class="doc-footer">Source: <code>content/guide/c.md</code></footer>
+  </article></main>
+  </div>
+</body>
+</html>"
+,
+  "index.html": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="static" data-page="home" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    
+    <a class="brand" href="/sub/" aria-current="page"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell is-wide">
+    
+    <main class="main" id="main"><div class="home">
+    <section class="hero has-image">
+      <div class="hero-main">
+        <h1 class="hero-heading"><span class="hero-name">Home Docs</span> <span class="hero-text">Decision records</span></h1>
+        <p class="hero-tagline">Every decision we made.</p>
+        <div class="hero-actions"><a class="hero-action is-brand" href="/sub/docs">Browse</a><a class="hero-action is-alt" href="https://example.com/repo">Source</a></div>
+      </div>
+      <div class="hero-media"><div class="hero-glow" aria-hidden="true"></div><img class="hero-image" src="/sub/logo.svg" alt=""></div>
+    </section>
+    <section class="features" aria-label="Highlights"><ul class="feature-grid" role="list"><li class="feature"><a class="feature-card" href="/sub/docs"><div class="feature-icon" aria-hidden="true">🔎</div>
+    <h2 class="feature-title">Search</h2>
+    <p class="feature-details">Find &lt;anything&gt;</p>
+    <span class="feature-link">Open <span aria-hidden="true">→</span></span></a></li><li class="feature"><div class="feature-card">
+    <h2 class="feature-title">Plain card</h2>
+    
+    </div></li></ul></section>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+  "logo.svg": "<svg xmlns='http://www.w3.org/2000/svg'/>",
+  "search-index.json": "[{"relPath":"a.md","slug":"a","url":"/sub/docs/a","fileName":"a.md","folder":"","title":"Alpha","tags":["setup"],"text":"A.","headings":[]},{"relPath":"b.md","slug":"b","url":"/sub/docs/b","fileName":"b.md","folder":"","title":"Beta","tags":[],"text":"","headings":[]},{"relPath":"guide/c.md","slug":"guide/c","url":"/sub/docs/guide/c","fileName":"c.md","folder":"guide","title":"Gamma","status":"draft","date":"2024-05-01","tags":[],"text":"One Text with a link. Two More.","headings":["One","Two"]}]",
+}
+`;
+
+exports[`site without mounts: home docfold build prints 1`] = `
+"docfold <version>  <root>/docfold.config.ts
+
+  Built 5 pages and copied 0 linked files + 1 from publicDir in <n> ms
+  → <out>  (base /sub/)
+
+  Check it with: docfold preview <root>
+
+"
+`;
+
+exports[`site without mounts: home dev server answers 1`] = `
+{
+  "/": {
+    "body": "",
+    "location": "/sub/",
+    "status": 302,
+    "type": null,
+  },
+  "/sub/": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="home" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    
+    <a class="brand" href="/sub/" aria-current="page"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell is-wide">
+    
+    <main class="main" id="main"><div class="home">
+    <section class="hero has-image">
+      <div class="hero-main">
+        <h1 class="hero-heading"><span class="hero-name">Home Docs</span> <span class="hero-text">Decision records</span></h1>
+        <p class="hero-tagline">Every decision we made.</p>
+        <div class="hero-actions"><a class="hero-action is-brand" href="/sub/docs">Browse</a><a class="hero-action is-alt" href="https://example.com/repo">Source</a></div>
+      </div>
+      <div class="hero-media"><div class="hero-glow" aria-hidden="true"></div><img class="hero-image" src="/sub/logo.svg" alt=""></div>
+    </section>
+    <section class="features" aria-label="Highlights"><ul class="feature-grid" role="list"><li class="feature"><a class="feature-card" href="/sub/docs"><div class="feature-icon" aria-hidden="true">🔎</div>
+    <h2 class="feature-title">Search</h2>
+    <p class="feature-details">Find &lt;anything&gt;</p>
+    <span class="feature-link">Open <span aria-hidden="true">→</span></span></a></li><li class="feature"><div class="feature-card">
+    <h2 class="feature-title">Plain card</h2>
+    
+    </div></li></ul></section>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 200,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/.secret": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Not found · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/.secret</code>. Pick a file from the sidebar or <a href="/sub/docs">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/?tag=setup": {
+    "body": "",
+    "location": "/sub/docs?tag=setup",
+    "status": 302,
+    "type": null,
+  },
+  "/sub/api/search?folder=guide": {
+    "body": "{"params":{"q":"","tags":[],"statuses":[],"folder":"guide","match":"all","sort":"relevance"},"total":3,"count":1,"results":[{"title":"Gamma","path":"guide/c.md","url":"/sub/docs/guide/c","folder":"guide","status":"draft","date":"2024-05-01","tags":[],"description":null,"score":0,"snippet":"One Text with a link. Two More."}],"facets":{"tags":[{"name":"setup","count":1}],"statuses":[{"name":"draft","count":1}]}}",
+    "location": null,
+    "status": 200,
+    "type": "application/json;charset=utf-8",
+  },
+  "/sub/api/search?q=a&sort=title": {
+    "body": "{"params":{"q":"a","tags":[],"statuses":[],"folder":"","match":"all","sort":"title"},"total":3,"count":3,"results":[{"title":"Alpha","path":"a.md","url":"/sub/docs/a","folder":"","status":null,"date":null,"tags":["setup"],"description":null,"score":15.25,"snippet":"A."},{"title":"Beta","path":"b.md","url":"/sub/docs/b","folder":"","status":null,"date":null,"tags":[],"description":null,"score":8,"snippet":""},{"title":"Gamma","path":"guide/c.md","url":"/sub/docs/guide/c","folder":"guide","status":"draft","date":"2024-05-01","tags":[],"description":null,"score":9.25,"snippet":"One Text with a link. Two More."}],"facets":{"tags":[{"name":"setup","count":1}],"statuses":[{"name":"draft","count":1}]}}",
+    "location": null,
+    "status": 200,
+    "type": "application/json;charset=utf-8",
+  },
+  "/sub/api/search?q=next": {
+    "body": "{"params":{"q":"next","tags":[],"statuses":[],"folder":"","match":"all","sort":"relevance"},"total":3,"count":0,"results":[],"facets":{"tags":[{"name":"setup","count":1}],"statuses":[{"name":"draft","count":1}]}}",
+    "location": null,
+    "status": 200,
+    "type": "application/json;charset=utf-8",
+  },
+  "/sub/docs": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="search" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Documents · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs" aria-current="page">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page">
+    <header class="page-header">
+      <h1>Documents</h1>
+      <p>Everything in <code>content/</code>. Search the text or narrow it down by tag and status.</p>
+    </header>
+    <div id="search-root"><form id="search-form" class="filters" action="/sub/docs" method="get" role="search">
+    <div class="search-row">
+      <label class="input-wrap search-main">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Search documents</span>
+        <input type="search" name="q" value="" placeholder="Search titles, tags, headings and content…" autocomplete="off" data-shortcut>
+        <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+      </label>
+      <label class="select-wrap">
+        <span class="sr-only">Sort by</span>
+        <select name="sort"><option value="relevance" selected>Best match</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option></select>
+      </label>
+    </div>
+
+    
+
+    <fieldset class="facet">
+            <legend>Tags</legend>
+            <div class="chips"><label class="chip">
+      <input type="checkbox" name="tag" value="setup">
+      <span>#setup</span><span class="chip-count">1</span>
+    </label></div>
+            <div class="match-mode" role="radiogroup" aria-label="Tag matching">
+              <span>Match</span>
+              <label><input type="radio" name="match" value="all" checked> all selected tags</label>
+              <label><input type="radio" name="match" value="any"> any selected tag</label>
+            </div>
+          </fieldset>
+
+    <fieldset class="facet">
+            <legend>Status</legend>
+            <div class="chips"><label class="chip" data-status="draft">
+      <input type="checkbox" name="status" value="draft">
+      <span>draft</span><span class="chip-count">1</span>
+    </label></div>
+          </fieldset>
+
+    <div class="filter-actions">
+      <button type="submit" class="button no-js-only">Apply filters</button>
+      <a class="button-link" href="/sub/docs">Clear all</a>
+    </div>
+  </form>
+    <section id="results" class="results" aria-live="polite"><p class="results-summary"><strong>3 documents</strong></p><ol class="result-list" role="list"><li class="result">
+    <div class="result-head">
+      <h2 class="result-title"><a href="/sub/docs/guide/c">Gamma</a></h2>
+      <span class="badge" data-status="draft">draft</span>
+    </div>
+    <div class="result-path">guide/c.md</div>
+    <p class="result-snippet">One Text with a link. Two More.</p>
+    <div class="meta">
+      <time datetime="2024-05-01">May 1, 2024</time>
+      
+    </div>
+  </li><li class="result">
+    <div class="result-head">
+      <h2 class="result-title"><a href="/sub/docs/a">Alpha</a></h2>
+      
+    </div>
+    <div class="result-path">a.md</div>
+    <p class="result-snippet">A.</p>
+    <div class="meta">
+      
+      <a class="tag" data-tag="setup" href="/sub/docs?tag=setup">setup</a>
+    </div>
+  </li><li class="result">
+    <div class="result-head">
+      <h2 class="result-title"><a href="/sub/docs/b">Beta</a></h2>
+      
+    </div>
+    <div class="result-path">b.md</div>
+    
+    <div class="meta">
+      
+      
+    </div>
+  </li></ol></section></div>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 200,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/docs/": {
+    "body": "",
+    "location": "/sub/docs",
+    "status": 301,
+    "type": null,
+  },
+  "/sub/docs/Guide/Intro.md": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Not found · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/docs/Guide/Intro.md</code>. Pick a file from the sidebar or <a href="/sub/docs">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/docs/a": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="doc" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Alpha · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md" aria-current="page"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><article class="doc">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/sub/docs">Docs</a><span aria-hidden="true">/</span><span>a.md</span>
+  </nav>
+    <header class="doc-header">
+      <h1>Alpha</h1>
+      
+      <div class="meta">
+        
+        
+        <a class="tag" href="/sub/docs?tag=setup">setup</a>
+      </div>
+    </header>
+    
+    <div class="prose"><p>A.</p>
+</div>
+    <footer class="doc-footer">Source: <code>content/a.md</code></footer>
+  </article></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 200,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/docs/guide/c": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="doc" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Gamma · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide" data-current>
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md" aria-current="page"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><article class="doc has-outline">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/sub/docs">Docs</a><span aria-hidden="true">/</span><a href="/sub/docs?folder=guide" title="Search in guide/">guide</a><span aria-hidden="true">/</span><span>c.md</span>
+  </nav>
+    <header class="doc-header">
+      <h1>Gamma</h1>
+      
+      <div class="meta">
+        <a class="badge" data-status="draft" href="/sub/docs?status=draft">draft</a>
+        <time datetime="2024-05-01">May 1, 2024</time>
+        
+      </div>
+    </header>
+    <nav class="outline" aria-label="On this page">
+      <p class="outline-title" aria-hidden="true">On this page</p>
+      <button class="outline-toggle" type="button" aria-expanded="false">On this page</button>
+      <ul class="outline-list" role="list"><li><a href="#one">One</a></li><li><a href="#two">Two</a></li></ul>
+    </nav>
+    <div class="prose"><h2 id="one"><a href="#one">One</a></h2>
+<p>Text with <a href="/sub/docs/a">a link</a>.</p>
+<h2 id="two"><a href="#two">Two</a></h2>
+<p>More.</p>
+</div>
+    <footer class="doc-footer">Source: <code>content/guide/c.md</code></footer>
+  </article></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 200,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/docs/guide/intro": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Not found · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/docs/guide/intro</code>. Pick a file from the sidebar or <a href="/sub/docs">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/docs/missing": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Not found · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/docs/missing</code>. Pick a file from the sidebar or <a href="/sub/docs">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/files/guide/img/a.png": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Not found · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/files/guide/img/a.png</code>. Pick a file from the sidebar or <a href="/sub/docs">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/files/unlinked.txt": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Not found · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/files/unlinked.txt</code>. Pick a file from the sidebar or <a href="/sub/docs">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/logo.svg": {
+    "body": "<svg xmlns='http://www.w3.org/2000/svg'/>",
+    "location": null,
+    "status": 200,
+    "type": "image/svg+xml",
+  },
+  "/sub/nope/": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Not found · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/nope/</code>. Pick a file from the sidebar or <a href="/sub/docs">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/reference": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Not found · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/reference</code>. Pick a file from the sidebar or <a href="/sub/docs">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/reference/": {
+    "body": 
+"<!doctype html>
+<html lang="en" data-base="/sub/" data-mode="dev" data-page="other" data-home>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4355e0">
+  <meta name="generator" content="docfold">
+  <meta name="description" content="Every decision we made.">
+  <title>Not found · Home Docs</title>
+  <link rel="stylesheet" href="/sub/assets/styles.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..700&family=Lora:wght@400..700&display=swap">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="module" src="/sub/assets/app.js"></script>
+  
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <button class="nav-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Show files" data-nav-label="files"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="brand" href="/sub/"><picture><source srcset="/sub/logo-dark.svg" media="(prefers-color-scheme: dark)"><img class="brand-logo" src="/sub/logo.svg" alt=""></picture><span class="brand-name">Home Docs</span></a>
+    
+    <form class="header-search" action="/sub/docs" method="get" role="search">
+            <label class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="sr-only">Search documents</span>
+              <input type="search" name="q" placeholder="Search docs…" data-shortcut>
+              <kbd class="shortcut-hint" aria-hidden="true">/</kbd>
+            </label>
+          </form>
+    <a class="button topbar-action" href="/sub/docs?tag=setup">Start here</a>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Files">
+    <div class="sidebar-filter">
+      <label class="input-wrap">
+        <svg class="input-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="sr-only">Filter files</span>
+        <input id="nav-filter" type="search" placeholder="Filter files…" autocomplete="off" spellcheck="false">
+      </label>
+    </div>
+    <nav class="sidebar-tree">
+      <a class="sidebar-home" href="/sub/docs">All documents <span class="tree-count">3</span></a>
+      <ul class="tree" role="list"><li class="tree-folder" data-path="guide" data-search="guide">
+    <details open>
+      <summary title="guide"><svg class="tree-icon" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="tree-label">guide</span><span class="tree-count">1</span></summary>
+      <ul class="tree" role="list"><li class="tree-file" data-search="gamma c.md"><a href="/sub/docs/guide/c" title="guide/c.md"><span class="tree-label">Gamma</span></a></li></ul>
+    </details>
+  </li><li class="tree-file" data-search="alpha a.md"><a href="/sub/docs/a" title="a.md"><span class="tree-label">Alpha</span></a></li><li class="tree-file" data-search="beta b.md"><a href="/sub/docs/b" title="b.md"><span class="tree-label">Beta</span></a></li></ul>
+      <p class="sidebar-note" id="nav-empty" hidden>No files match.</p>
+    </nav>
+  </aside><div class="backdrop" data-nav-close></div>
+    <main class="main" id="main"><div class="page not-found">
+    <h1>Page not found</h1>
+    <p>Nothing lives at <code>/sub/reference/</code>. Pick a file from the sidebar or <a href="/sub/docs">search all documents</a>.</p>
+  </div></main>
+  </div>
+</body>
+</html>"
+,
+    "location": null,
+    "status": 404,
+    "type": "text/html; charset=utf-8",
+  },
+  "/sub/search-index.json": {
+    "body": "[{"relPath":"a.md","slug":"a","url":"/sub/docs/a","fileName":"a.md","folder":"","title":"Alpha","tags":["setup"],"text":"A.","headings":[]},{"relPath":"b.md","slug":"b","url":"/sub/docs/b","fileName":"b.md","folder":"","title":"Beta","tags":[],"text":"","headings":[]},{"relPath":"guide/c.md","slug":"guide/c","url":"/sub/docs/guide/c","fileName":"c.md","folder":"guide","title":"Gamma","status":"draft","date":"2024-05-01","tags":[],"text":"One Text with a link. Two More.","headings":["One","Two"]}]",
+    "location": null,
+    "status": 200,
+    "type": "application/json;charset=utf-8",
+  },
+}
+`;
+
+exports[`site without mounts: home docfold dev prints 1`] = `
+"docfold <version>  <root>/docfold.config.ts
+
+  Local:  http://localhost:<port>/sub/
+  3 markdown files from <root>/content
+  Not watching for changes (set watch: true in docfold.config.ts to reload on save).
+  Press Ctrl+C to stop.
+
+"
+`;
+
+exports[`site without mounts: home preview server answers 1`] = `
+{
+  "/": {
+    "body": "",
+    "location": "/sub/",
+    "status": 302,
+    "type": null,
+  },
+  "/sub/": {
+    "body": "(the built file index.html)",
+    "location": null,
+    "status": 200,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/docs": {
+    "body": "(the built file docs.html)",
+    "location": null,
+    "status": 200,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/docs/a": {
+    "body": "(the built file docs/a.html)",
+    "location": null,
+    "status": 200,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/docs/guide": {
+    "body": "(the built file 404.html)",
+    "location": null,
+    "status": 404,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/docs/guide/c": {
+    "body": "(the built file docs/guide/c.html)",
+    "location": null,
+    "status": 200,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/docs/guide/intro": {
+    "body": "(the built file 404.html)",
+    "location": null,
+    "status": 404,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/docs/guide/intro/": {
+    "body": "(the built file 404.html)",
+    "location": null,
+    "status": 404,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/logo.svg": {
+    "body": "(the built file logo.svg)",
+    "location": null,
+    "status": 200,
+    "type": "image/svg+xml",
+  },
+  "/sub/nope/": {
+    "body": "(the built file 404.html)",
+    "location": null,
+    "status": 404,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/reference": {
+    "body": "(the built file 404.html)",
+    "location": null,
+    "status": 404,
+    "type": "text/html;charset=utf-8",
+  },
+  "/sub/search-index.json": {
+    "body": "(the built file search-index.json)",
+    "location": null,
+    "status": 200,
+    "type": "application/json;charset=utf-8",
+  },
+}
+`;

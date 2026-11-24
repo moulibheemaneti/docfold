@@ -14,26 +14,22 @@
  *     search-index.json
  *     404.html
  *     …                          everything in publicDir (logo, favicon…)
+ *     <mount path>/…             each mounted folder, copied as it is (config `mounts`)
  */
 
-import { cp, mkdir, readdir, rm, stat } from "node:fs/promises";
+import { cp, mkdir, readdir, rm } from "node:fs/promises";
 import { dirname, join, relative, resolve, sep } from "node:path";
 import { loadLibrary } from "../content";
+import { copyMount, inspectMounts, loadAllMountEntries } from "../mounts";
 import { docPage, notFoundPage } from "../pages";
 import { DEFAULT_PARAMS } from "../search";
-import { isFile, isInside } from "../shared/paths";
+import { isDirectory, isFile, isInside } from "../shared/paths";
 import { createSite, ignoredFolders, renderHome, renderList, searchIndex } from "../site";
 import { bundleClient, loadStyles } from "./assets";
 import type { BuildResult, Library, ResolvedConfig } from "../types";
 
 /** Written into every build; only folders carrying it are ever emptied. */
 export const BUILD_MARKER = ".docfold-build";
-
-const isDirectory = (path: string): Promise<boolean> =>
-  stat(path).then(
-    (info) => info.isDirectory(),
-    () => false,
-  );
 
 /** Empties `outDir`, refusing anything that could hold the user's own files. */
 const prepareOutDir = async (config: ResolvedConfig): Promise<void> => {
@@ -43,6 +39,11 @@ const prepareOutDir = async (config: ResolvedConfig): Promise<void> => {
   // Only matters when publicDir exists (outDir: "public" is fine for a site without one).
   if ((await isDirectory(publicDir)) && (isInside(publicDir, outDir) || isInside(outDir, publicDir))) {
     throw new Error(`outDir (${outDir}) and publicDir (${publicDir}) must not contain each other.`);
+  }
+  for (const mount of config.mounts) {
+    if (isInside(mount.dir, outDir) || isInside(outDir, mount.dir)) {
+      throw new Error(`outDir (${outDir}) and the mounted folder ${mount.dir} (mounts "${mount.path}") must not contain each other.`);
+    }
   }
 
   let entries: string[] = [];
@@ -109,6 +110,10 @@ export const build = async (config: ResolvedConfig): Promise<BuildResult> => {
     ignore: ignoredFolders(config),
     slugCollisions: "error",
   });
+  // Also before anything is written: a mount at the same address as a publicDir file stops the build.
+  // Folders that don't exist yet are reported in the result, not searched and not copied.
+  const missingMounts = await inspectMounts(config);
+  const mounted = await loadAllMountEntries(config.mounts, site.urls, missingMounts);
   const [styles, clientScript] = await Promise.all([loadStyles(config), bundleClient()]);
 
   await prepareOutDir(config);
@@ -122,7 +127,7 @@ export const build = async (config: ResolvedConfig): Promise<BuildResult> => {
   write(BUILD_MARKER, `${JSON.stringify({ generator: "docfold", base: config.base, builtAt: new Date().toISOString() }, null, 2)}\n`);
   write(".nojekyll", ""); // GitHub Pages: serve files as-is
 
-  const list = renderList(site, library, DEFAULT_PARAMS);
+  const list = renderList(site, library, DEFAULT_PARAMS, mounted);
   if (config.home) {
     write("index.html", await renderHome(config, site, library));
     write("docs.html", list);
@@ -133,12 +138,19 @@ export const build = async (config: ResolvedConfig): Promise<BuildResult> => {
   for (const doc of library.docs) write(`docs/${doc.slug}.html`, docPage(site, library, doc));
   write("404.html", notFoundPage(site, library));
 
-  write("search-index.json", JSON.stringify(searchIndex(library)));
+  write("search-index.json", JSON.stringify(searchIndex(library, mounted)));
   write("assets/styles.css", styles);
   write("assets/app.js", clientScript);
 
   // Only the files the markdown actually links to.
   const [linked] = await Promise.all([copyLinkedFiles(library, config.srcDir, config.outDir), ...writes]);
+
+  // Mounted folders last, each into its own address. The config's checks keep those addresses clear
+  // of everything written above, so nothing is overwritten.
+  let mountFiles = 0;
+  for (const mount of config.mounts) {
+    if (!missingMounts.includes(mount)) mountFiles += await copyMount(mount.dir, join(config.outDir, ...mount.path.split("/")));
+  }
 
   return {
     outDir: config.outDir,
@@ -147,6 +159,9 @@ export const build = async (config: ResolvedConfig): Promise<BuildResult> => {
     publicFiles,
     missingFiles: linked.missing,
     ms: Math.round(performance.now() - started),
+    ...(config.mounts.length
+      ? { mountFiles, mountEntries: mounted.length, missingMounts: missingMounts.map((mount) => mount.dir) }
+      : {}),
   };
 };
 

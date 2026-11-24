@@ -13,6 +13,12 @@ export interface BuildResult {
   /** Linked from the markdown but not copied: missing, a folder, or a hidden / node_modules path. */
   missingFiles: string[];
   ms: number;
+  /** Only with mounts: files copied from the mounted folders. */
+  mountFiles?: number;
+  /** Only with mounts: search entries read from the mounted folders' indexes. */
+  mountEntries?: number;
+  /** Only with mounts: mounted folders that don't exist, so nothing was copied from them (absolute paths). */
+  missingMounts?: string[];
 }
 
 export interface ServerOptions {

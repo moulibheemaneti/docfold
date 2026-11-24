@@ -2,21 +2,24 @@
  * `docfold dev`: renders pages on request from the markdown on disk. With
  * `watch` on in the config, it re-reads the folder when anything changes and
  * reloads open browser tabs; with it off (the default) files are read once.
- * When the config declares `builds`, it also serves the Builds section (see ../builds).
+ * When the config declares `builds`, it also serves the Builds section (see ../builds),
+ * and with `mounts`, each mounted folder at its own address (see ../mounts).
  */
 
 import { type FSWatcher, watch } from "node:fs";
 import { basename, dirname, resolve } from "node:path";
 import { BuildRunner, createBuildRoutes, handleBuildSocketMessage, isLocalRequest, isSameOrigin } from "../builds";
 import { ContentStore } from "../content";
+import { findMountFile, inspectMounts, MountedEntries, watchMount } from "../mounts";
 import { docPage, notFoundPage } from "../pages";
 import { parseSearchParams, SEARCH_KEYS, searchDocs } from "../search";
+import { warn } from "../shared/log";
 import { decodePathAfter, isFile, isInside } from "../shared/paths";
 import { toSlug } from "../shared/slug";
-import { createSite, ignoredFolders, renderHome, renderList, searchIndex } from "../site";
+import { createSite, ignoredFolders, renderHome, renderList, searchable, searchIndex } from "../site";
 import { bundleClient, loadBuildStyles, loadStyles } from "./assets";
 import { htmlResponse, listen } from "./serve";
-import type { DevServer, DevServerOptions, ResolvedConfig, Site, SocketData } from "../types";
+import type { DevServer, DevServerOptions, ResolvedConfig, ResolvedMount, Site, SocketData } from "../types";
 
 /** Watches single files (by their folder, so files created later count too) and whole folders. */
 const watchPaths = (files: string[], folders: string[], onChange: () => void): FSWatcher[] => {
@@ -56,6 +59,10 @@ export const createDevServer = async (config: ResolvedConfig, options: DevServer
   const site = createSite(config, "dev");
   const { urls } = site;
   const base = urls.base;
+  // A mount at the same address as a publicDir file stops here; one whose folder isn't there yet is fine.
+  for (const mount of await inspectMounts(config)) {
+    warn(`Mounted folder not found: ${mount.dir} (mounts "${mount.path}"). It is served once it exists.`);
+  }
   // Bundle first: if it fails, nothing has been started yet.
   const [clientScript, buildsScript, buildsStyles] = await Promise.all([
     bundleClient("app"),
@@ -74,19 +81,27 @@ export const createDevServer = async (config: ResolvedConfig, options: DevServer
     debounce: config.watch ? config.watch.debounce : undefined,
   });
 
+  // Search entries from mounted folders' own indexes; kept apart from the markdown library.
+  const mounted = new MountedEntries(config.mounts, urls);
+
   // Off by default: files are read once. `watch` in the config turns on re-reading (and live reload).
-  const watchers: FSWatcher[] = [];
+  const watchers: Pick<FSWatcher, "close">[] = [];
   if (config.watch) {
     store.watch();
     const files = [config.home ? config.home.file : "", config.theme.css ?? ""].filter(Boolean);
     watchers.push(...watchPaths(files, [config.publicDir], () => store.notify()));
+    for (const mount of config.mounts) {
+      watchers.push(watchMount(mount.dir, config.watch.debounce, () => void mounted.reload(mount).then(() => store.notify())));
+    }
   }
 
   const notFound = async (req: Request, server: Server): Promise<Response> =>
     htmlResponse(notFoundPage(siteFor(req, server), await store.library(), new URL(req.url).pathname), 404);
 
   const listPage = async (req: Request, server: Server): Promise<Response> =>
-    htmlResponse(renderList(siteFor(req, server), await store.library(), parseSearchParams(new URL(req.url).searchParams)));
+    htmlResponse(
+      renderList(siteFor(req, server), await store.library(), parseSearchParams(new URL(req.url).searchParams), await mounted.all()),
+    );
 
   /** A file from publicDir (logo, favicon, images) served at the same path under the base. */
   const publicFile = async (pathname: string): Promise<Response | null> => {
@@ -97,6 +112,31 @@ export const createDevServer = async (config: ResolvedConfig, options: DevServer
     return isInside(path, config.publicDir) && (await isFile(path))
       ? new Response(Bun.file(path))
       : null;
+  };
+
+  /**
+   * A mounted folder's files at `<base><path>/…`, served as they are. A folder is served as its
+   * index.html at its address with the trailing slash (the one without redirects to it), because
+   * generated pages link to each other relatively ("../greeting/Greeter-class.html").
+   */
+  const mountRoutes = (mount: ResolvedMount): Bun.Serve.RoutesWithUpgrade<SocketData, string> => {
+    const root = urls.mount(mount.path);
+    return {
+      [root.slice(0, -1)]: (req) => Response.redirect(root + new URL(req.url).search, 301),
+      [`${root}*`]: async (req, server) => {
+        const { pathname, search } = new URL(req.url);
+        const relPath = decodePathAfter(pathname, root);
+        const found = relPath === null ? null : await findMountFile(mount.dir, relPath);
+        if (found?.type === "folder") {
+          if (!pathname.endsWith("/")) return Response.redirect(`${pathname}/${search}`, 301);
+          const index = await findMountFile(mount.dir, `${relPath}index.html`);
+          if (index?.type === "file") return new Response(Bun.file(index.path));
+        }
+        // A file asked for as a folder ("x.html/") is missing, as on static hosts.
+        if (found?.type === "file" && !pathname.endsWith("/")) return new Response(Bun.file(found.path));
+        return notFound(req, server);
+      },
+    };
   };
 
   const routes: Bun.Serve.RoutesWithUpgrade<SocketData, string> = {
@@ -134,11 +174,11 @@ export const createDevServer = async (config: ResolvedConfig, options: DevServer
       return notFound(req, server);
     },
 
-    [urls.searchIndex]: async () => Response.json(searchIndex(await store.library())),
+    [urls.searchIndex]: async () => Response.json(searchIndex(await store.library(), await mounted.all())),
 
     [`${base}api/search`]: async (req) => {
       const library = await store.library();
-      const result = searchDocs(library.docs, parseSearchParams(new URL(req.url).searchParams));
+      const result = searchDocs(searchable(library, await mounted.all()), parseSearchParams(new URL(req.url).searchParams));
       return Response.json({
         params: result.params,
         total: result.total,
@@ -154,6 +194,8 @@ export const createDevServer = async (config: ResolvedConfig, options: DevServer
           description: doc.description ?? null,
           score,
           snippet,
+          // Only entries from a mounted folder have one: { path, label, kind }.
+          ...(doc.source ? { source: doc.source } : {}),
         })),
         facets: { tags: library.tags, statuses: library.statuses },
       });
@@ -180,6 +222,8 @@ export const createDevServer = async (config: ResolvedConfig, options: DevServer
         headers: { "Content-Type": "text/javascript; charset=utf-8", "Cache-Control": "no-cache" },
       }),
   };
+
+  for (const mount of config.mounts) Object.assign(routes, mountRoutes(mount));
 
   if (runner) {
     Object.assign(
@@ -249,7 +293,8 @@ export const createDevServer = async (config: ResolvedConfig, options: DevServer
     const started = server;
     if (site.liveReload) store.onChange(() => started.publish(RELOAD_TOPIC, "reload"));
     if (runner) runner.publish = (topic, message) => started.publish(topic, message);
-    await store.library(); // parse once up front so the first request is fast and errors show early
+    // Parse once up front so the first request is fast and errors show early.
+    await Promise.all([store.library(), mounted.all()]);
   } catch (err) {
     await stop();
     throw err;

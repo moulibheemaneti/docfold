@@ -169,6 +169,31 @@ export interface BuildsConfig {
   commands: BuildCommandConfig[];
 }
 
+/** Formats a mounted folder's own search index can be read in. */
+export type MountSearchFormat = "dartdoc";
+
+export interface MountSearchConfig {
+  /** The index's format. Supported: "dartdoc" (the index.json `dart doc` writes). */
+  format: MountSearchFormat;
+  /** The index file, relative to `dir`. Default: the format's own file ("index.json" for "dartdoc"). */
+  index?: string;
+}
+
+/** A folder of HTML made by another tool (such as `dart doc`), served as it is at an address of its own. */
+export interface MountConfig {
+  /** The folder to serve, relative to the config file, e.g. "../doc/api". It may not exist yet. */
+  dir: string;
+  /**
+   * Its address under the base: "reference" is served at <base>reference/. One or more "/"-separated
+   * parts of lower-case letters, digits, "-" and "_". Can't start with docs, files, assets, api or builds.
+   */
+  path: string;
+  /** Text of its link in the header and of the badge on its search results, e.g. "API reference". */
+  label: string;
+  /** Adds the folder's own search index to docfold's search. Leave out to serve the folder without searching it. */
+  search?: MountSearchConfig;
+}
+
 export interface UserConfig {
   /** Site name in the top bar and page titles. Default: "Docs". */
   title?: string;
@@ -207,6 +232,11 @@ export interface UserConfig {
    * Never part of `docfold build`. Changes need a restart of `docfold dev`.
    */
   builds?: BuildsConfig;
+  /**
+   * Folders of HTML made by other tools (such as `dart doc`), each served as it is at its own
+   * address, with an optional search index added to docfold's search.
+   */
+  mounts?: MountConfig[];
 }
 
 export interface ResolvedHeader {
@@ -246,4 +276,19 @@ export interface ResolvedConfig {
   head: string[];
   /** `false` when the config declares no build commands. */
   builds: false | ResolvedBuilds;
+  /** Empty when the config declares no mounts. */
+  mounts: ResolvedMount[];
+}
+
+export interface ResolvedMount {
+  /** Absolute path of the folder. */
+  dir: string;
+  /** The address under the base, without leading or trailing slashes: "reference", "api/v2". */
+  path: string;
+  label: string;
+  search?: {
+    format: MountSearchFormat;
+    /** Absolute path of the index file. */
+    index: string;
+  };
 }
