@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/moulibheemaneti/docfold/compare/docfold-v0.4.0...docfold-v0.5.0) (2026-11-24)
+
+
+### Features
+
+* serve and search mounted folders ([#12](https://github.com/moulibheemaneti/docfold/issues/12)) ([e8f3d2d](https://github.com/moulibheemaneti/docfold/commit/e8f3d2dfb110451a92807803b418fbb3302ebee0))
+
 ## [0.4.0](https://github.com/moulibheemaneti/docfold/compare/docfold-v0.3.0...docfold-v0.4.0) (2026-11-17)
 
 
